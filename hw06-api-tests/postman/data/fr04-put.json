@@ -1,0 +1,718 @@
+[
+  {
+    "id": "FR04-TC-011",
+    "technique": "Positive PUT",
+    "input": "PUT body `B0` với user token",
+    "expected": "`2xx`; GET sau đó khớp ba field trong `B0`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": true
+  },
+  {
+    "id": "FR04-TC-012",
+    "technique": "Unicode name",
+    "input": "Đổi `name` thành `Nguyễn Văn Ánh`",
+    "expected": "`2xx`; GET giữ đúng Unicode",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "name": "Nguyễn Văn Ánh",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": true
+  },
+  {
+    "id": "FR04-TC-013",
+    "technique": "Name punctuation",
+    "input": "Đổi `name` thành `O'Connor-An`",
+    "expected": "`2xx`; GET giữ đúng literal, DB vẫn hoạt động",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "name": "O'Connor-An",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": true
+  },
+  {
+    "id": "FR04-TC-014",
+    "technique": "Name type null",
+    "input": "Đổi `name` thành `null`",
+    "expected": "`4xx`; snapshot profile không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": null,
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-015",
+    "technique": "Name type number",
+    "input": "Đổi `name` thành `12345`",
+    "expected": "`4xx`; snapshot profile không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": 12345,
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-016",
+    "technique": "Name type object",
+    "input": "Đổi `name` thành `{\"first\":\"A\"}`",
+    "expected": "`4xx`; snapshot profile không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": {
+        "first": "A"
+      },
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-017",
+    "technique": "Name type array",
+    "input": "Đổi `name` thành `[\"A\"]`",
+    "expected": "`4xx`; snapshot profile không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": [
+        "A"
+      ],
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-018",
+    "technique": "Phone lower valid boundary",
+    "input": "Đổi phone thành `0123456789`",
+    "expected": "`2xx`; GET trả đúng 10 chữ số",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0123456789",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": true
+  },
+  {
+    "id": "FR04-TC-019",
+    "technique": "Phone upper valid boundary",
+    "input": "Đổi phone thành `01234567890`",
+    "expected": "`2xx`; GET trả đúng 11 chữ số",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "01234567890",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": true
+  },
+  {
+    "id": "FR04-TC-020",
+    "technique": "Phone below boundary",
+    "input": "Đổi phone thành `012345678`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "012345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-021",
+    "technique": "Phone above boundary",
+    "input": "Đổi phone thành `012345678901`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "012345678901",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-022",
+    "technique": "Phone first digit",
+    "input": "Đổi phone thành `1123456789`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "1123456789",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-023",
+    "technique": "Phone alphabetic",
+    "input": "Đổi phone thành `09ABC45678`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "09ABC45678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-024",
+    "technique": "Phone hyphen",
+    "input": "Đổi phone thành `0912-345-678`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912-345-678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-025",
+    "technique": "Phone internal spaces",
+    "input": "Đổi phone thành `0912 345 678`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912 345 678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-026",
+    "technique": "Phone country prefix",
+    "input": "Đổi phone thành `+84912345678`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "+84912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-027",
+    "technique": "Phone Unicode digits",
+    "input": "Đổi phone thành `０１２３４５６７８９`",
+    "expected": "`4xx`; chỉ ASCII digits được chấp nhận",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "０１２３４５６７８９",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-028",
+    "technique": "Phone empty",
+    "input": "Đổi phone thành empty string",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-029",
+    "technique": "Phone null",
+    "input": "Đổi phone thành `null`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": null,
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-030",
+    "technique": "Phone number type",
+    "input": "Đổi phone thành number `912345678`",
+    "expected": "`4xx`; không coercion và không làm mất số 0",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": 912345678,
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-031",
+    "technique": "Phone boolean type",
+    "input": "Đổi phone thành `true`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": true,
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-032",
+    "technique": "Phone object type",
+    "input": "Đổi phone thành `{}`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": {},
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-033",
+    "technique": "Phone array type",
+    "input": "Đổi phone thành `[]`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": [],
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-034",
+    "technique": "Unicode address",
+    "input": "Đổi address thành `123 Lê Lợi, Quận 1, TP.HCM`",
+    "expected": "`2xx`; GET giữ đúng Unicode",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Quan 1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": true
+  },
+  {
+    "id": "FR04-TC-035",
+    "technique": "Multiline address",
+    "input": "Đổi address thành `Tầng 2\\n123 Lê Lợi`",
+    "expected": "`2xx`; GET giữ đúng newline/literal JSON",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": "Tang 2\n123 Le Loi"
+    },
+    "verifyProfile": true,
+    "expectChanged": true
+  },
+  {
+    "id": "FR04-TC-036",
+    "technique": "Address null type",
+    "input": "Đổi address thành `null`",
+    "expected": "`4xx`; address cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": null
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-037",
+    "technique": "Address number type",
+    "input": "Đổi address thành `123`",
+    "expected": "`4xx`; address cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": 123
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-038",
+    "technique": "Address boolean type",
+    "input": "Đổi address thành `false`",
+    "expected": "`4xx`; address cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": false
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-039",
+    "technique": "Address object type",
+    "input": "Đổi address thành `{}`",
+    "expected": "`4xx`; address cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": {}
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-040",
+    "technique": "Address array type",
+    "input": "Đổi address thành `[]`",
+    "expected": "`4xx`; address cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": []
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-041",
+    "technique": "Role mass assignment",
+    "input": "Gửi body `B0` cộng `role=\"admin\"`",
+    "expected": "Sau request, GET vẫn trả `role=\"user\"`; user token vẫn không gọi được API admin",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM",
+      "role": "admin"
+    },
+    "verifyProfile": true,
+    "expectChanged": false,
+    "allowedStatusClasses": [
+      2,
+      4
+    ],
+    "expectRoleUnchanged": true
+  },
+  {
+    "id": "FR04-TC-042",
+    "technique": "Immutable email",
+    "input": "Gửi body `B0` cộng `email=\"attacker@example.com\"`",
+    "expected": "Sau request, email vẫn là email seed",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM",
+      "email": "attacker@example.com"
+    },
+    "verifyProfile": true,
+    "expectChanged": false,
+    "allowedStatusClasses": [
+      2,
+      4
+    ],
+    "expectEmailUnchanged": true
+  },
+  {
+    "id": "FR04-TC-043",
+    "technique": "Ownership/mass assignment",
+    "input": "Gửi body `B0` cộng `id={{adminId}}`",
+    "expected": "Chỉ user trong JWT có thể thay đổi; admin snapshot không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM",
+      "id": "__ADMIN_ID__"
+    },
+    "verifyProfile": true,
+    "expectChanged": false,
+    "allowedStatusClasses": [
+      2,
+      4
+    ],
+    "expectAdminUnchanged": true
+  },
+  {
+    "id": "FR04-TC-044",
+    "technique": "Ownership/mass assignment",
+    "input": "Gửi body `B0` cộng `user_id={{adminId}}`",
+    "expected": "Admin snapshot không đổi; field client không đổi subject JWT",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM",
+      "user_id": "__ADMIN_ID__"
+    },
+    "verifyProfile": true,
+    "expectChanged": false,
+    "allowedStatusClasses": [
+      2,
+      4
+    ],
+    "expectAdminUnchanged": true
+  },
+  {
+    "id": "FR04-TC-045",
+    "technique": "Sensitive field injection",
+    "input": "Gửi body `B0` cộng `password=\"NewPassword123!\"`",
+    "expected": "Password không đổi; login bằng password seed vẫn thành công",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM",
+      "password": "NewPassword123!"
+    },
+    "verifyProfile": true,
+    "expectChanged": false,
+    "allowedStatusClasses": [
+      2,
+      4
+    ],
+    "verifySeedPassword": true
+  },
+  {
+    "id": "FR04-TC-046",
+    "technique": "SQL injection",
+    "input": "Đổi name thành `x', role='admin' --`",
+    "expected": "Không thay đổi role hoặc row khác; DB vẫn query được; không lộ SQL/stack trace",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "name": "x', role='admin' --",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false,
+    "allowedStatusClasses": [
+      2,
+      4
+    ],
+    "expectRoleUnchanged": true
+  },
+  {
+    "id": "FR04-TC-047",
+    "technique": "XSS API portion",
+    "input": "Đổi name thành `<script>alert(1)</script>`",
+    "expected": "Không có server-side execution/5xx; response là JSON; nếu lưu thì GET trả literal string",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "name": "<script>alert(1)</script>",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false,
+    "allowedStatusClasses": [
+      2,
+      4
+    ],
+    "assertJsonResponse": true
+  },
+  {
+    "id": "FR04-TC-048",
+    "technique": "PUT auth missing",
+    "input": "PUT `B0` không có token",
+    "expected": "`4xx`; profile snapshot không đổi",
+    "automationStatus": "ready",
+    "authMode": "missing",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "0912345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-049",
+    "technique": "Empty body",
+    "input": "PUT `{}` với user token",
+    "expected": "`4xx`; profile snapshot không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {},
+    "verifyProfile": true,
+    "expectChanged": false
+  },
+  {
+    "id": "FR04-TC-050",
+    "technique": "Malformed JSON",
+    "input": "PUT body JSON thiếu dấu đóng",
+    "expected": "`4xx`; server tiếp tục phục vụ GET; profile không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "rawBody": "{\"name\":\"Broken JSON\"",
+    "verifyProfile": true,
+    "expectChanged": false
+  }
+]

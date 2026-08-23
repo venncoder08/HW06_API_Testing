@@ -1,0 +1,1279 @@
+[
+  {
+    "id": "FR17-TC-011",
+    "technique": "Positive create percent",
+    "input": "POST body `C0` bằng admin",
+    "expected": "`2xx`; GET list có đúng một coupon với code mới và field khớp",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_011",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-012",
+    "technique": "Positive create fixed",
+    "input": "Đổi type `fixed`, discount `50000`",
+    "expected": "`2xx`; GET list giữ đúng type/value",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_012",
+      "type": "fixed",
+      "discount_value": 50000,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-013",
+    "technique": "Create auth missing",
+    "input": "POST `C0` không token",
+    "expected": "`4xx`; GET không thấy code mới",
+    "automationStatus": "ready",
+    "authMode": "missing",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_013",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-014",
+    "technique": "Create user role",
+    "input": "POST `C0` bằng user token",
+    "expected": "`4xx`; GET không thấy code mới",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_014",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-015",
+    "technique": "Create malformed JWT",
+    "input": "POST `C0` bằng malformed token",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "malformed",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_015",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-016",
+    "technique": "Create forged admin JWT",
+    "input": "POST `C0` bằng forged token",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "forged-admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_016",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-017",
+    "technique": "Code missing",
+    "input": "Bỏ `code`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-018",
+    "technique": "Code null",
+    "input": "`code=null`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": null,
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-019",
+    "technique": "Code empty",
+    "input": "`code=\"\"`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-020",
+    "technique": "Code duplicate",
+    "input": "Dùng code `SAVE10` đã tồn tại",
+    "expected": "`4xx`; chỉ một `SAVE10` tồn tại; không lộ raw SQLite error",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-021",
+    "technique": "Code number type",
+    "input": "`code=123`",
+    "expected": "`4xx`; không coercion thành code string",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": 123,
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-022",
+    "technique": "Code boolean type",
+    "input": "`code=true`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": true,
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-023",
+    "technique": "Code object type",
+    "input": "`code={}`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": {},
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-024",
+    "technique": "Code array type",
+    "input": "`code=[]`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": [],
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-025",
+    "technique": "Code SQL injection",
+    "input": "`code=\"X'); DROP TABLE coupons; --\"`",
+    "expected": "Không thực thi SQL; seed coupons và table vẫn tồn tại; không lộ SQL/stack trace",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "code": "X'); DROP TABLE coupons; --",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false,
+    "allowedStatusClasses": [
+      2,
+      4
+    ],
+    "verifyDatabaseIntact": true
+  },
+  {
+    "id": "FR17-TC-026",
+    "technique": "Code XSS API portion",
+    "input": "`code=\"<script>alert(1)</script>\"`",
+    "expected": "Không server-side execution/5xx; response là JSON; nếu lưu thì GET trả literal string",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "code": "<script>alert(1)</script>",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false,
+    "allowedStatusClasses": [
+      2,
+      4
+    ],
+    "assertJsonResponse": true
+  },
+  {
+    "id": "FR17-TC-027",
+    "technique": "Type missing",
+    "input": "Bỏ `type`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_027",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-028",
+    "technique": "Type null",
+    "input": "`type=null`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_028",
+      "type": null,
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-029",
+    "technique": "Type empty",
+    "input": "`type=\"\"`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_029",
+      "type": "",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-030",
+    "technique": "Type percent",
+    "input": "`type=\"percent\"`",
+    "expected": "`2xx`; GET trả `percent`",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_030",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-031",
+    "technique": "Type fixed",
+    "input": "`type=\"fixed\"`",
+    "expected": "`2xx`; GET trả `fixed`",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_031",
+      "type": "fixed",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-032",
+    "technique": "Type invalid enum",
+    "input": "`type=\"percentage\"`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_032",
+      "type": "percentage",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-033",
+    "technique": "Type number",
+    "input": "`type=1`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_033",
+      "type": 1,
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-034",
+    "technique": "Type object",
+    "input": "`type={}`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_034",
+      "type": {},
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-035",
+    "technique": "Type array",
+    "input": "`type=[]`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_035",
+      "type": [],
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-036",
+    "technique": "Discount missing",
+    "input": "Bỏ `discount_value`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_036",
+      "type": "percent",
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-037",
+    "technique": "Discount null",
+    "input": "`discount_value=null`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_037",
+      "type": "percent",
+      "discount_value": null,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-038",
+    "technique": "Discount lower valid",
+    "input": "`discount_value=1`",
+    "expected": "`2xx`; GET giữ giá trị 1",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_038",
+      "type": "percent",
+      "discount_value": 1,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-039",
+    "technique": "Discount zero",
+    "input": "`discount_value=0`",
+    "expected": "`4xx`; phải dương",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_039",
+      "type": "percent",
+      "discount_value": 0,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-040",
+    "technique": "Discount negative",
+    "input": "`discount_value=-1`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_040",
+      "type": "percent",
+      "discount_value": -1,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-041",
+    "technique": "Discount positive decimal",
+    "input": "`discount_value=10.5`",
+    "expected": "`2xx`; requirement chỉ yêu cầu dương; GET không được âm thầm đổi giá trị",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_041",
+      "type": "percent",
+      "discount_value": 10.5,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-042",
+    "technique": "Discount numeric string",
+    "input": "`discount_value=\"10\"`",
+    "expected": "`4xx`; request contract dùng number",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_042",
+      "type": "percent",
+      "discount_value": "10",
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-043",
+    "technique": "Discount boolean",
+    "input": "`discount_value=true`",
+    "expected": "`4xx`; không coercion",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_043",
+      "type": "percent",
+      "discount_value": true,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-044",
+    "technique": "Discount object",
+    "input": "`discount_value={}`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_044",
+      "type": "percent",
+      "discount_value": {},
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-045",
+    "technique": "Discount array",
+    "input": "`discount_value=[]`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_045",
+      "type": "percent",
+      "discount_value": [],
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-046",
+    "technique": "Min amount missing",
+    "input": "Bỏ `min_order_amount`",
+    "expected": "`4xx`; field bắt buộc",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_046",
+      "type": "percent",
+      "discount_value": 15,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-047",
+    "technique": "Min amount null",
+    "input": "`min_order_amount=null`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_047",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": null,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-048",
+    "technique": "Min lower boundary",
+    "input": "`min_order_amount=0`",
+    "expected": "`2xx`; GET giữ giá trị 0",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_048",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 0,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-049",
+    "technique": "Min positive",
+    "input": "`min_order_amount=1`",
+    "expected": "`2xx`; GET giữ giá trị 1",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_049",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 1,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-050",
+    "technique": "Min negative",
+    "input": "`min_order_amount=-1`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_050",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": -1,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-051",
+    "technique": "Min positive decimal",
+    "input": "`min_order_amount=0.5`",
+    "expected": "`2xx`; requirement chỉ quy định `>=0`; GET không đổi giá trị",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_051",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 0.5,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-052",
+    "technique": "Min numeric string",
+    "input": "`min_order_amount=\"200000\"`",
+    "expected": "`4xx`; không coercion",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_052",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": "200000",
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-053",
+    "technique": "Min boolean",
+    "input": "`min_order_amount=false`",
+    "expected": "`4xx`; không coercion thành 0",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_053",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": false,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-054",
+    "technique": "Min object",
+    "input": "`min_order_amount={}`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_054",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": {},
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-055",
+    "technique": "Min array",
+    "input": "`min_order_amount=[]`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_055",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": [],
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-056",
+    "technique": "Expiry missing",
+    "input": "Bỏ `expired_at`",
+    "expected": "`4xx`; field bắt buộc",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_056",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-057",
+    "technique": "Expiry null",
+    "input": "`expired_at=null`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_057",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": null,
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-058",
+    "technique": "Expiry empty",
+    "input": "`expired_at=\"\"`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_058",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-059",
+    "technique": "Expiry valid future",
+    "input": "`expired_at=\"2099-12-31\"`",
+    "expected": "`2xx`; GET trả ngày parseable tương ứng",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_059",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-060",
+    "technique": "Expiry valid leap day",
+    "input": "`expired_at=\"2032-02-29\"`",
+    "expected": "`2xx`; GET trả ngày hợp lệ",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_060",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2032-02-29",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-061",
+    "technique": "Expiry valid past",
+    "input": "`expired_at=\"2020-01-01\"`",
+    "expected": "`2xx`; FR17 chỉ yêu cầu field ngày; FR09 chịu trách nhiệm từ chối coupon hết hạn",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_061",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2020-01-01",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-062",
+    "technique": "Expiry invalid date",
+    "input": "`expired_at=\"2031-02-29\"`",
+    "expected": "`4xx`; không tạo coupon với ngày không tồn tại",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_062",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2031-02-29",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-063",
+    "technique": "Expiry invalid format",
+    "input": "`expired_at=\"not-a-date\"`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_063",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "not-a-date",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-064",
+    "technique": "Expiry number type",
+    "input": "`expired_at=20991231`",
+    "expected": "`4xx`; request contract dùng date string",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_064",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": 20991231,
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-065",
+    "technique": "Expiry object type",
+    "input": "`expired_at={}`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_065",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": {},
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-066",
+    "technique": "Max uses missing",
+    "input": "Bỏ `max_uses_per_user`",
+    "expected": "`4xx`; field bắt buộc",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_066",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31"
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-067",
+    "technique": "Max uses null",
+    "input": "`max_uses_per_user=null`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_067",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": null
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-068",
+    "technique": "Max uses lower valid",
+    "input": "`max_uses_per_user=1`",
+    "expected": "`2xx`; GET giữ giá trị 1",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_068",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-069",
+    "technique": "Max uses positive",
+    "input": "`max_uses_per_user=2`",
+    "expected": "`2xx`; GET giữ giá trị 2",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_069",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 2
+    },
+    "expectedCreated": true
+  },
+  {
+    "id": "FR17-TC-070",
+    "technique": "Max uses zero",
+    "input": "`max_uses_per_user=0`",
+    "expected": "`4xx`; phải `>=1`",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_070",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 0
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-071",
+    "technique": "Max uses negative",
+    "input": "`max_uses_per_user=-1`",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_071",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": -1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-072",
+    "technique": "Max uses numeric string",
+    "input": "`max_uses_per_user=\"1\"`",
+    "expected": "`4xx`; không coercion",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_072",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": "1"
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-073",
+    "technique": "Max uses object",
+    "input": "`max_uses_per_user={}`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_073",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": {}
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-074",
+    "technique": "ID mass assignment",
+    "input": "Gửi `C0` cộng `id=1`",
+    "expected": "Seed coupon ID 1 không bị overwrite; created resource không chiếm ID client chỉ định",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_074",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1,
+      "id": 1
+    },
+    "expectedCreated": false,
+    "allowedStatusClasses": [
+      2,
+      4
+    ],
+    "verifySeedCouponIntact": true
+  },
+  {
+    "id": "FR17-TC-075",
+    "technique": "Concurrent uniqueness",
+    "input": "Gửi đồng thời hai POST admin cùng code unique",
+    "expected": "Chỉ một resource có code đó được tạo; request còn lại bị từ chối `4xx`",
+    "automationStatus": "manual-review",
+    "authMode": "admin",
+    "expectedStatusClass": null,
+    "notes": "Concurrency case requires two parallel requests; excluded from single-run automation.",
+    "body": {
+      "code": "HW06_FR17_075",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-088",
+    "technique": "Malformed JSON",
+    "input": "POST body JSON thiếu dấu đóng",
+    "expected": "`4xx`; không tạo coupon; server vẫn phục vụ GET",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "rawBody": "{\"code\":\"BROKEN\"",
+    "expectedCreated": false
+  },
+  {
+    "id": "FR17-TC-089",
+    "technique": "Wrong content type",
+    "input": "POST `C0` với Content-Type không phải JSON",
+    "expected": "`4xx`; không tạo coupon",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "HW06_FR17_089",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "contentType": "text/plain",
+    "expectedCreated": false
+  }
+]

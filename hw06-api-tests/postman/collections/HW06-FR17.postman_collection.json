@@ -1,0 +1,1113 @@
+{
+  "info": {
+    "_postman_id": "3e8cf6af-3b16-4661-ad6c-2f6a7ac5f45e",
+    "name": "HW06 - FR17 Coupon Administration",
+    "description": "Generated draft for human review. Not executed by Codex.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "const studentId = pm.environment.get(\"studentId\");",
+          "pm.request.headers.upsert({ key: \"X-Student-Id\", value: studentId || \"REVIEW_REQUIRED\" });",
+          "console.log(\"X-Student-Id:\", studentId || \"REVIEW_REQUIRED\", pm.request.method, pm.request.url.toString());"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "GET Coupons - run with fr17-get.json",
+      "item": [
+        {
+          "name": "Setup - Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"{{userEmail}}\",\"password\":\"{{userPassword}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Setup login returns 2xx\", () => pm.expect(pm.response.code).to.be.within(200, 299));",
+                  "const body = pm.response.json();",
+                  "pm.expect(body).to.have.property(\"token\");",
+                  "pm.environment.set(\"userToken\", body.token);",
+                  "if (body.user && body.user.id !== undefined) pm.environment.set(\"userId\", body.user.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Setup - Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"{{adminEmail}}\",\"password\":\"{{adminPassword}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Setup login returns 2xx\", () => pm.expect(pm.response.code).to.be.within(200, 299));",
+                  "const body = pm.response.json();",
+                  "pm.expect(body).to.have.property(\"token\");",
+                  "pm.environment.set(\"adminToken\", body.token);",
+                  "if (body.user && body.user.id !== undefined) pm.environment.set(\"adminId\", body.user.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Execute FR17 GET case",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/coupons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "coupons"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.iterationData.get(\"automationStatus\") === \"manual-review\") {",
+                  "  console.warn(\"Manual-review case skipped:\", pm.iterationData.get(\"id\"));",
+                  "  pm.execution.skipRequest();",
+                  "}",
+                  "",
+                  "const mode = pm.iterationData.get(\"authMode\") || \"user\";",
+                  "const userToken = pm.environment.get(\"userToken\") || \"\";",
+                  "const adminToken = pm.environment.get(\"adminToken\") || \"\";",
+                  "",
+                  "function forge(token, role) {",
+                  "  try {",
+                  "    const parts = token.split(\".\");",
+                  "    const normalized = parts[1].replace(/-/g, \"+\").replace(/_/g, \"/\");",
+                  "    const payload = JSON.parse(atob(normalized));",
+                  "    payload.role = role || payload.role;",
+                  "    payload.id = Number(payload.id || 0) + 1000;",
+                  "    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))",
+                  "      .replace(/=/g, \"\").replace(/\\+/g, \"-\").replace(/\\//g, \"_\");",
+                  "    return [parts[0], encoded, parts[2]].join(\".\");",
+                  "  } catch (_) {",
+                  "    return \"forged.invalid.token\";",
+                  "  }",
+                  "}",
+                  "",
+                  "pm.request.headers.remove(\"Authorization\");",
+                  "if (mode === \"user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + userToken });",
+                  "if (mode === \"admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + adminToken });",
+                  "if (mode === \"empty\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" });",
+                  "if (mode === \"malformed\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer abc.def\" });",
+                  "if (mode === \"forged-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"user\") });",
+                  "if (mode === \"forged-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"admin\") });",
+                  "if (mode === \"basic-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + userToken });",
+                  "if (mode === \"basic-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + adminToken });",
+                  "",
+                  "function resolveValue(value) {",
+                  "  if (Array.isArray(value)) return value.map(resolveValue);",
+                  "  if (value && typeof value === \"object\") {",
+                  "    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveValue(item)]));",
+                  "  }",
+                  "  if (value === \"__USER_ID__\") return Number(pm.environment.get(\"userId\"));",
+                  "  if (value === \"__ADMIN_ID__\") return Number(pm.environment.get(\"adminId\"));",
+                  "  if (value === \"__CASE_CODE__\") return \"HW06_\" + pm.iterationData.get(\"id\").replace(/-/g, \"_\");",
+                  "  return value;",
+                  "}",
+                  "",
+                  "const rawBody = pm.iterationData.get(\"rawBody\");",
+                  "const body = resolveValue(pm.iterationData.get(\"body\") || {});",
+                  "pm.variables.set(\"requestBody\", rawBody !== undefined ? rawBody : JSON.stringify(body));",
+                  "",
+                  "const contentType = pm.iterationData.get(\"contentType\") || \"application/json\";",
+                  "pm.request.headers.upsert({ key: \"Content-Type\", value: contentType });"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const expectedClass = pm.iterationData.get(\"expectedStatusClass\");",
+                  "const allowed = pm.iterationData.get(\"allowedStatusClasses\");",
+                  "if (expectedClass !== null && expectedClass !== undefined) {",
+                  "  pm.test(\"Expected HTTP status class\", () => pm.expect(Math.floor(pm.response.code / 100)).to.eql(Number(expectedClass)));",
+                  "} else if (Array.isArray(allowed) && allowed.length) {",
+                  "  pm.test(\"Allowed HTTP status class\", () => pm.expect(allowed).to.include(Math.floor(pm.response.code / 100)));",
+                  "} else {",
+                  "  pm.test(\"No server failure\", () => pm.expect(pm.response.code).to.be.below(500));",
+                  "}",
+                  "",
+                  "if (pm.iterationData.get(\"assertJsonResponse\")) {",
+                  "  pm.test(\"Response is JSON\", () => pm.expect(() => pm.response.json()).not.to.throw());",
+                  "}",
+                  "if (Math.floor(pm.response.code / 100) === 2) {",
+                  "  const body = pm.response.json();",
+                  "  if (pm.iterationData.get(\"assertCouponArray\")) pm.test(\"Coupon list is array\", () => pm.expect(body).to.be.an(\"array\"));",
+                  "  if (pm.iterationData.get(\"expectEmptyArray\")) pm.test(\"Coupon list is empty\", () => pm.expect(body).to.eql([]));",
+                  "  if (pm.iterationData.get(\"assertRequiredCouponFields\")) {",
+                  "    for (const coupon of body) {",
+                  "      for (const key of [\"code\", \"type\", \"discount_value\", \"min_order_amount\", \"expired_at\", \"max_uses_per_user\"]) {",
+                  "        pm.expect(coupon).to.have.property(key);",
+                  "      }",
+                  "    }",
+                  "  }",
+                  "  if (pm.iterationData.get(\"assertNoSensitiveFields\")) {",
+                  "    for (const coupon of body) {",
+                  "      for (const key of [\"password\", \"token\", \"reset_token\"]) pm.expect(coupon).not.to.have.property(key);",
+                  "    }",
+                  "  }",
+                  "}"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CREATE Coupon - run with fr17-create.json",
+      "item": [
+        {
+          "name": "Setup - Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"{{userEmail}}\",\"password\":\"{{userPassword}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Setup login returns 2xx\", () => pm.expect(pm.response.code).to.be.within(200, 299));",
+                  "const body = pm.response.json();",
+                  "pm.expect(body).to.have.property(\"token\");",
+                  "pm.environment.set(\"userToken\", body.token);",
+                  "if (body.user && body.user.id !== undefined) pm.environment.set(\"userId\", body.user.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Setup - Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"{{adminEmail}}\",\"password\":\"{{adminPassword}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Setup login returns 2xx\", () => pm.expect(pm.response.code).to.be.within(200, 299));",
+                  "const body = pm.response.json();",
+                  "pm.expect(body).to.have.property(\"token\");",
+                  "pm.environment.set(\"adminToken\", body.token);",
+                  "if (body.user && body.user.id !== undefined) pm.environment.set(\"adminId\", body.user.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Execute FR17 CREATE case",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/coupons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "coupons"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{{requestBody}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.iterationData.get(\"automationStatus\") === \"manual-review\") {",
+                  "  console.warn(\"Manual-review case skipped:\", pm.iterationData.get(\"id\"));",
+                  "  pm.execution.skipRequest();",
+                  "}",
+                  "",
+                  "const mode = pm.iterationData.get(\"authMode\") || \"user\";",
+                  "const userToken = pm.environment.get(\"userToken\") || \"\";",
+                  "const adminToken = pm.environment.get(\"adminToken\") || \"\";",
+                  "",
+                  "function forge(token, role) {",
+                  "  try {",
+                  "    const parts = token.split(\".\");",
+                  "    const normalized = parts[1].replace(/-/g, \"+\").replace(/_/g, \"/\");",
+                  "    const payload = JSON.parse(atob(normalized));",
+                  "    payload.role = role || payload.role;",
+                  "    payload.id = Number(payload.id || 0) + 1000;",
+                  "    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))",
+                  "      .replace(/=/g, \"\").replace(/\\+/g, \"-\").replace(/\\//g, \"_\");",
+                  "    return [parts[0], encoded, parts[2]].join(\".\");",
+                  "  } catch (_) {",
+                  "    return \"forged.invalid.token\";",
+                  "  }",
+                  "}",
+                  "",
+                  "pm.request.headers.remove(\"Authorization\");",
+                  "if (mode === \"user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + userToken });",
+                  "if (mode === \"admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + adminToken });",
+                  "if (mode === \"empty\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" });",
+                  "if (mode === \"malformed\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer abc.def\" });",
+                  "if (mode === \"forged-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"user\") });",
+                  "if (mode === \"forged-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"admin\") });",
+                  "if (mode === \"basic-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + userToken });",
+                  "if (mode === \"basic-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + adminToken });",
+                  "",
+                  "function resolveValue(value) {",
+                  "  if (Array.isArray(value)) return value.map(resolveValue);",
+                  "  if (value && typeof value === \"object\") {",
+                  "    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveValue(item)]));",
+                  "  }",
+                  "  if (value === \"__USER_ID__\") return Number(pm.environment.get(\"userId\"));",
+                  "  if (value === \"__ADMIN_ID__\") return Number(pm.environment.get(\"adminId\"));",
+                  "  if (value === \"__CASE_CODE__\") return \"HW06_\" + pm.iterationData.get(\"id\").replace(/-/g, \"_\");",
+                  "  return value;",
+                  "}",
+                  "",
+                  "const rawBody = pm.iterationData.get(\"rawBody\");",
+                  "const body = resolveValue(pm.iterationData.get(\"body\") || {});",
+                  "pm.variables.set(\"requestBody\", rawBody !== undefined ? rawBody : JSON.stringify(body));",
+                  "",
+                  "const contentType = pm.iterationData.get(\"contentType\") || \"application/json\";",
+                  "pm.request.headers.upsert({ key: \"Content-Type\", value: contentType });"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const expectedClass = pm.iterationData.get(\"expectedStatusClass\");",
+                  "const allowed = pm.iterationData.get(\"allowedStatusClasses\");",
+                  "if (expectedClass !== null && expectedClass !== undefined) {",
+                  "  pm.test(\"Expected HTTP status class\", () => pm.expect(Math.floor(pm.response.code / 100)).to.eql(Number(expectedClass)));",
+                  "} else if (Array.isArray(allowed) && allowed.length) {",
+                  "  pm.test(\"Allowed HTTP status class\", () => pm.expect(allowed).to.include(Math.floor(pm.response.code / 100)));",
+                  "} else {",
+                  "  pm.test(\"No server failure\", () => pm.expect(pm.response.code).to.be.below(500));",
+                  "}",
+                  "",
+                  "if (pm.iterationData.get(\"assertJsonResponse\")) {",
+                  "  pm.test(\"Response is JSON\", () => pm.expect(() => pm.response.json()).not.to.throw());",
+                  "}",
+                  "pm.environment.unset(\"createdCouponId\");",
+                  "pm.environment.set(\"targetStatusClass\", Math.floor(pm.response.code / 100));",
+                  "if (Math.floor(pm.response.code / 100) === 2) {",
+                  "  try {",
+                  "    const body = pm.response.json();",
+                  "    if (body.id !== undefined) pm.environment.set(\"createdCouponId\", body.id);",
+                  "  } catch (_) {}",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Verify Coupon List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/coupons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "coupons"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.iterationData.get(\"automationStatus\") === \"manual-review\") {",
+                  "  console.warn(\"Manual-review case skipped:\", pm.iterationData.get(\"id\"));",
+                  "  pm.execution.skipRequest();",
+                  "}",
+                  "",
+                  "const mode = \"admin\";",
+                  "const userToken = pm.environment.get(\"userToken\") || \"\";",
+                  "const adminToken = pm.environment.get(\"adminToken\") || \"\";",
+                  "",
+                  "function forge(token, role) {",
+                  "  try {",
+                  "    const parts = token.split(\".\");",
+                  "    const normalized = parts[1].replace(/-/g, \"+\").replace(/_/g, \"/\");",
+                  "    const payload = JSON.parse(atob(normalized));",
+                  "    payload.role = role || payload.role;",
+                  "    payload.id = Number(payload.id || 0) + 1000;",
+                  "    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))",
+                  "      .replace(/=/g, \"\").replace(/\\+/g, \"-\").replace(/\\//g, \"_\");",
+                  "    return [parts[0], encoded, parts[2]].join(\".\");",
+                  "  } catch (_) {",
+                  "    return \"forged.invalid.token\";",
+                  "  }",
+                  "}",
+                  "",
+                  "pm.request.headers.remove(\"Authorization\");",
+                  "if (mode === \"user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + userToken });",
+                  "if (mode === \"admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + adminToken });",
+                  "if (mode === \"empty\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" });",
+                  "if (mode === \"malformed\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer abc.def\" });",
+                  "if (mode === \"forged-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"user\") });",
+                  "if (mode === \"forged-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"admin\") });",
+                  "if (mode === \"basic-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + userToken });",
+                  "if (mode === \"basic-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + adminToken });",
+                  "",
+                  "function resolveValue(value) {",
+                  "  if (Array.isArray(value)) return value.map(resolveValue);",
+                  "  if (value && typeof value === \"object\") {",
+                  "    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveValue(item)]));",
+                  "  }",
+                  "  if (value === \"__USER_ID__\") return Number(pm.environment.get(\"userId\"));",
+                  "  if (value === \"__ADMIN_ID__\") return Number(pm.environment.get(\"adminId\"));",
+                  "  if (value === \"__CASE_CODE__\") return \"HW06_\" + pm.iterationData.get(\"id\").replace(/-/g, \"_\");",
+                  "  return value;",
+                  "}",
+                  "",
+                  "const rawBody = pm.iterationData.get(\"rawBody\");",
+                  "const body = resolveValue(pm.iterationData.get(\"body\") || {});",
+                  "pm.variables.set(\"requestBody\", rawBody !== undefined ? rawBody : JSON.stringify(body));",
+                  "",
+                  "const contentType = pm.iterationData.get(\"contentType\") || \"application/json\";",
+                  "pm.request.headers.upsert({ key: \"Content-Type\", value: contentType });"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Verify coupon list succeeds\", () => pm.expect(pm.response.code).to.be.within(200, 299));",
+                  "const list = pm.response.json();",
+                  "const requestBody = pm.iterationData.get(\"body\") || {};",
+                  "const code = requestBody.code;",
+                  "const found = list.filter((coupon) => coupon.code === code);",
+                  "const targetClass = Number(pm.environment.get(\"targetStatusClass\"));",
+                  "",
+                  "if (pm.iterationData.get(\"verifyDatabaseIntact\") || pm.iterationData.get(\"verifySeedCouponIntact\")) {",
+                  "  pm.test(\"Seed coupon remains intact\", () => pm.expect(list.some((coupon) => coupon.code === \"SAVE10\")).to.eql(true));",
+                  "}",
+                  "",
+                  "if (targetClass === 2 && typeof code === \"string\" && code.length) {",
+                  "  pm.test(\"Created coupon is listed once\", () => pm.expect(found.length).to.eql(1));",
+                  "  if (found.length === 1) {",
+                  "    pm.environment.set(\"createdCouponId\", found[0].id);",
+                  "    for (const key of [\"code\", \"type\", \"discount_value\", \"min_order_amount\", \"expired_at\", \"max_uses_per_user\"]) {",
+                  "      if (Object.prototype.hasOwnProperty.call(requestBody, key)) {",
+                  "        pm.test(\"Created field: \" + key, () => pm.expect(found[0][key]).to.eql(requestBody[key]));",
+                  "      }",
+                  "    }",
+                  "  }",
+                  "} else if (typeof code === \"string\" && code.length && code !== \"SAVE10\") {",
+                  "  pm.test(\"Rejected coupon is absent\", () => pm.expect(found.length).to.eql(0));",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Cleanup Created Coupon",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/coupons/{{createdCouponId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "coupons",
+                "{{createdCouponId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.iterationData.get(\"automationStatus\") === \"manual-review\") {",
+                  "  console.warn(\"Manual-review case skipped:\", pm.iterationData.get(\"id\"));",
+                  "  pm.execution.skipRequest();",
+                  "}",
+                  "",
+                  "const mode = \"admin\";",
+                  "const userToken = pm.environment.get(\"userToken\") || \"\";",
+                  "const adminToken = pm.environment.get(\"adminToken\") || \"\";",
+                  "",
+                  "function forge(token, role) {",
+                  "  try {",
+                  "    const parts = token.split(\".\");",
+                  "    const normalized = parts[1].replace(/-/g, \"+\").replace(/_/g, \"/\");",
+                  "    const payload = JSON.parse(atob(normalized));",
+                  "    payload.role = role || payload.role;",
+                  "    payload.id = Number(payload.id || 0) + 1000;",
+                  "    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))",
+                  "      .replace(/=/g, \"\").replace(/\\+/g, \"-\").replace(/\\//g, \"_\");",
+                  "    return [parts[0], encoded, parts[2]].join(\".\");",
+                  "  } catch (_) {",
+                  "    return \"forged.invalid.token\";",
+                  "  }",
+                  "}",
+                  "",
+                  "pm.request.headers.remove(\"Authorization\");",
+                  "if (mode === \"user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + userToken });",
+                  "if (mode === \"admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + adminToken });",
+                  "if (mode === \"empty\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" });",
+                  "if (mode === \"malformed\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer abc.def\" });",
+                  "if (mode === \"forged-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"user\") });",
+                  "if (mode === \"forged-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"admin\") });",
+                  "if (mode === \"basic-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + userToken });",
+                  "if (mode === \"basic-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + adminToken });",
+                  "",
+                  "function resolveValue(value) {",
+                  "  if (Array.isArray(value)) return value.map(resolveValue);",
+                  "  if (value && typeof value === \"object\") {",
+                  "    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveValue(item)]));",
+                  "  }",
+                  "  if (value === \"__USER_ID__\") return Number(pm.environment.get(\"userId\"));",
+                  "  if (value === \"__ADMIN_ID__\") return Number(pm.environment.get(\"adminId\"));",
+                  "  if (value === \"__CASE_CODE__\") return \"HW06_\" + pm.iterationData.get(\"id\").replace(/-/g, \"_\");",
+                  "  return value;",
+                  "}",
+                  "",
+                  "const rawBody = pm.iterationData.get(\"rawBody\");",
+                  "const body = resolveValue(pm.iterationData.get(\"body\") || {});",
+                  "pm.variables.set(\"requestBody\", rawBody !== undefined ? rawBody : JSON.stringify(body));",
+                  "",
+                  "const contentType = pm.iterationData.get(\"contentType\") || \"application/json\";",
+                  "pm.request.headers.upsert({ key: \"Content-Type\", value: contentType });",
+                  "if (!pm.environment.get(\"createdCouponId\")) pm.environment.set(\"createdCouponId\", \"0\");"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Cleanup completed without server crash\", () => pm.expect(pm.response.code).to.be.below(500));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DELETE Coupon - run with fr17-delete.json",
+      "item": [
+        {
+          "name": "Setup - Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"{{userEmail}}\",\"password\":\"{{userPassword}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Setup login returns 2xx\", () => pm.expect(pm.response.code).to.be.within(200, 299));",
+                  "const body = pm.response.json();",
+                  "pm.expect(body).to.have.property(\"token\");",
+                  "pm.environment.set(\"userToken\", body.token);",
+                  "if (body.user && body.user.id !== undefined) pm.environment.set(\"userId\", body.user.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Setup - Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"{{adminEmail}}\",\"password\":\"{{adminPassword}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Setup login returns 2xx\", () => pm.expect(pm.response.code).to.be.within(200, 299));",
+                  "const body = pm.response.json();",
+                  "pm.expect(body).to.have.property(\"token\");",
+                  "pm.environment.set(\"adminToken\", body.token);",
+                  "if (body.user && body.user.id !== undefined) pm.environment.set(\"adminId\", body.user.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Prepare Delete Fixture",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/coupons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "coupons"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{{deleteFixtureBody}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.iterationData.get(\"automationStatus\") === \"manual-review\") {",
+                  "  console.warn(\"Manual-review case skipped:\", pm.iterationData.get(\"id\"));",
+                  "  pm.execution.skipRequest();",
+                  "}",
+                  "",
+                  "const mode = \"admin\";",
+                  "const userToken = pm.environment.get(\"userToken\") || \"\";",
+                  "const adminToken = pm.environment.get(\"adminToken\") || \"\";",
+                  "",
+                  "function forge(token, role) {",
+                  "  try {",
+                  "    const parts = token.split(\".\");",
+                  "    const normalized = parts[1].replace(/-/g, \"+\").replace(/_/g, \"/\");",
+                  "    const payload = JSON.parse(atob(normalized));",
+                  "    payload.role = role || payload.role;",
+                  "    payload.id = Number(payload.id || 0) + 1000;",
+                  "    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))",
+                  "      .replace(/=/g, \"\").replace(/\\+/g, \"-\").replace(/\\//g, \"_\");",
+                  "    return [parts[0], encoded, parts[2]].join(\".\");",
+                  "  } catch (_) {",
+                  "    return \"forged.invalid.token\";",
+                  "  }",
+                  "}",
+                  "",
+                  "pm.request.headers.remove(\"Authorization\");",
+                  "if (mode === \"user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + userToken });",
+                  "if (mode === \"admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + adminToken });",
+                  "if (mode === \"empty\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" });",
+                  "if (mode === \"malformed\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer abc.def\" });",
+                  "if (mode === \"forged-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"user\") });",
+                  "if (mode === \"forged-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"admin\") });",
+                  "if (mode === \"basic-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + userToken });",
+                  "if (mode === \"basic-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + adminToken });",
+                  "",
+                  "function resolveValue(value) {",
+                  "  if (Array.isArray(value)) return value.map(resolveValue);",
+                  "  if (value && typeof value === \"object\") {",
+                  "    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveValue(item)]));",
+                  "  }",
+                  "  if (value === \"__USER_ID__\") return Number(pm.environment.get(\"userId\"));",
+                  "  if (value === \"__ADMIN_ID__\") return Number(pm.environment.get(\"adminId\"));",
+                  "  if (value === \"__CASE_CODE__\") return \"HW06_\" + pm.iterationData.get(\"id\").replace(/-/g, \"_\");",
+                  "  return value;",
+                  "}",
+                  "",
+                  "const rawBody = pm.iterationData.get(\"rawBody\");",
+                  "const body = resolveValue(pm.iterationData.get(\"body\") || {});",
+                  "pm.variables.set(\"requestBody\", rawBody !== undefined ? rawBody : JSON.stringify(body));",
+                  "",
+                  "const contentType = pm.iterationData.get(\"contentType\") || \"application/json\";",
+                  "pm.request.headers.upsert({ key: \"Content-Type\", value: contentType });",
+                  "const code = \"DEL_\" + pm.iterationData.get(\"id\").replace(/-/g, \"_\");",
+                  "pm.variables.set(\"deleteFixtureCode\", code);",
+                  "pm.variables.set(\"deleteFixtureBody\", JSON.stringify({ code, type: \"fixed\", discount_value: 1000, min_order_amount: 0, expired_at: \"2099-12-31\", max_uses_per_user: 1 }));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Delete fixture created\", () => pm.expect(pm.response.code).to.be.within(200, 299));",
+                  "const body = pm.response.json();",
+                  "pm.environment.set(\"deleteFixtureId\", body.id);",
+                  "pm.environment.set(\"deleteFixtureCode\", pm.variables.get(\"deleteFixtureCode\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Execute FR17 DELETE case",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/coupons/{{deleteTargetId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "coupons",
+                "{{deleteTargetId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.iterationData.get(\"automationStatus\") === \"manual-review\") {",
+                  "  console.warn(\"Manual-review case skipped:\", pm.iterationData.get(\"id\"));",
+                  "  pm.execution.skipRequest();",
+                  "}",
+                  "",
+                  "const mode = pm.iterationData.get(\"authMode\") || \"user\";",
+                  "const userToken = pm.environment.get(\"userToken\") || \"\";",
+                  "const adminToken = pm.environment.get(\"adminToken\") || \"\";",
+                  "",
+                  "function forge(token, role) {",
+                  "  try {",
+                  "    const parts = token.split(\".\");",
+                  "    const normalized = parts[1].replace(/-/g, \"+\").replace(/_/g, \"/\");",
+                  "    const payload = JSON.parse(atob(normalized));",
+                  "    payload.role = role || payload.role;",
+                  "    payload.id = Number(payload.id || 0) + 1000;",
+                  "    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))",
+                  "      .replace(/=/g, \"\").replace(/\\+/g, \"-\").replace(/\\//g, \"_\");",
+                  "    return [parts[0], encoded, parts[2]].join(\".\");",
+                  "  } catch (_) {",
+                  "    return \"forged.invalid.token\";",
+                  "  }",
+                  "}",
+                  "",
+                  "pm.request.headers.remove(\"Authorization\");",
+                  "if (mode === \"user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + userToken });",
+                  "if (mode === \"admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + adminToken });",
+                  "if (mode === \"empty\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" });",
+                  "if (mode === \"malformed\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer abc.def\" });",
+                  "if (mode === \"forged-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"user\") });",
+                  "if (mode === \"forged-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"admin\") });",
+                  "if (mode === \"basic-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + userToken });",
+                  "if (mode === \"basic-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + adminToken });",
+                  "",
+                  "function resolveValue(value) {",
+                  "  if (Array.isArray(value)) return value.map(resolveValue);",
+                  "  if (value && typeof value === \"object\") {",
+                  "    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveValue(item)]));",
+                  "  }",
+                  "  if (value === \"__USER_ID__\") return Number(pm.environment.get(\"userId\"));",
+                  "  if (value === \"__ADMIN_ID__\") return Number(pm.environment.get(\"adminId\"));",
+                  "  if (value === \"__CASE_CODE__\") return \"HW06_\" + pm.iterationData.get(\"id\").replace(/-/g, \"_\");",
+                  "  return value;",
+                  "}",
+                  "",
+                  "const rawBody = pm.iterationData.get(\"rawBody\");",
+                  "const body = resolveValue(pm.iterationData.get(\"body\") || {});",
+                  "pm.variables.set(\"requestBody\", rawBody !== undefined ? rawBody : JSON.stringify(body));",
+                  "",
+                  "const contentType = pm.iterationData.get(\"contentType\") || \"application/json\";",
+                  "pm.request.headers.upsert({ key: \"Content-Type\", value: contentType });",
+                  "const deleteIdMode = pm.iterationData.get(\"deleteIdMode\") || \"created\";",
+                  "let target = pm.environment.get(\"deleteFixtureId\");",
+                  "if (deleteIdMode === \"nonexistent\") target = \"999999\";",
+                  "if (deleteIdMode === \"zero\") target = \"0\";",
+                  "if (deleteIdMode === \"negative\") target = \"-1\";",
+                  "if (deleteIdMode === \"string\") target = \"abc\";",
+                  "if (deleteIdMode === \"sqli\") target = encodeURIComponent(\"1 OR 1=1\");",
+                  "pm.variables.set(\"deleteTargetId\", target);"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const expectedClass = pm.iterationData.get(\"expectedStatusClass\");",
+                  "const allowed = pm.iterationData.get(\"allowedStatusClasses\");",
+                  "if (expectedClass !== null && expectedClass !== undefined) {",
+                  "  pm.test(\"Expected HTTP status class\", () => pm.expect(Math.floor(pm.response.code / 100)).to.eql(Number(expectedClass)));",
+                  "} else if (Array.isArray(allowed) && allowed.length) {",
+                  "  pm.test(\"Allowed HTTP status class\", () => pm.expect(allowed).to.include(Math.floor(pm.response.code / 100)));",
+                  "} else {",
+                  "  pm.test(\"No server failure\", () => pm.expect(pm.response.code).to.be.below(500));",
+                  "}",
+                  "",
+                  "if (pm.iterationData.get(\"assertJsonResponse\")) {",
+                  "  pm.test(\"Response is JSON\", () => pm.expect(() => pm.response.json()).not.to.throw());",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Verify Delete State",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/coupons",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "coupons"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.iterationData.get(\"automationStatus\") === \"manual-review\") {",
+                  "  console.warn(\"Manual-review case skipped:\", pm.iterationData.get(\"id\"));",
+                  "  pm.execution.skipRequest();",
+                  "}",
+                  "",
+                  "const mode = \"admin\";",
+                  "const userToken = pm.environment.get(\"userToken\") || \"\";",
+                  "const adminToken = pm.environment.get(\"adminToken\") || \"\";",
+                  "",
+                  "function forge(token, role) {",
+                  "  try {",
+                  "    const parts = token.split(\".\");",
+                  "    const normalized = parts[1].replace(/-/g, \"+\").replace(/_/g, \"/\");",
+                  "    const payload = JSON.parse(atob(normalized));",
+                  "    payload.role = role || payload.role;",
+                  "    payload.id = Number(payload.id || 0) + 1000;",
+                  "    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))",
+                  "      .replace(/=/g, \"\").replace(/\\+/g, \"-\").replace(/\\//g, \"_\");",
+                  "    return [parts[0], encoded, parts[2]].join(\".\");",
+                  "  } catch (_) {",
+                  "    return \"forged.invalid.token\";",
+                  "  }",
+                  "}",
+                  "",
+                  "pm.request.headers.remove(\"Authorization\");",
+                  "if (mode === \"user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + userToken });",
+                  "if (mode === \"admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + adminToken });",
+                  "if (mode === \"empty\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" });",
+                  "if (mode === \"malformed\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer abc.def\" });",
+                  "if (mode === \"forged-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"user\") });",
+                  "if (mode === \"forged-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"admin\") });",
+                  "if (mode === \"basic-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + userToken });",
+                  "if (mode === \"basic-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + adminToken });",
+                  "",
+                  "function resolveValue(value) {",
+                  "  if (Array.isArray(value)) return value.map(resolveValue);",
+                  "  if (value && typeof value === \"object\") {",
+                  "    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveValue(item)]));",
+                  "  }",
+                  "  if (value === \"__USER_ID__\") return Number(pm.environment.get(\"userId\"));",
+                  "  if (value === \"__ADMIN_ID__\") return Number(pm.environment.get(\"adminId\"));",
+                  "  if (value === \"__CASE_CODE__\") return \"HW06_\" + pm.iterationData.get(\"id\").replace(/-/g, \"_\");",
+                  "  return value;",
+                  "}",
+                  "",
+                  "const rawBody = pm.iterationData.get(\"rawBody\");",
+                  "const body = resolveValue(pm.iterationData.get(\"body\") || {});",
+                  "pm.variables.set(\"requestBody\", rawBody !== undefined ? rawBody : JSON.stringify(body));",
+                  "",
+                  "const contentType = pm.iterationData.get(\"contentType\") || \"application/json\";",
+                  "pm.request.headers.upsert({ key: \"Content-Type\", value: contentType });"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Verify coupon list succeeds\", () => pm.expect(pm.response.code).to.be.within(200, 299));",
+                  "const list = pm.response.json();",
+                  "const fixtureCode = pm.environment.get(\"deleteFixtureCode\");",
+                  "const exists = list.some((coupon) => coupon.code === fixtureCode);",
+                  "const expectedPresent = Boolean(pm.iterationData.get(\"expectedFixturePresentAfterDelete\"));",
+                  "pm.test(\"Delete state is correct\", () => pm.expect(exists).to.eql(expectedPresent));",
+                  "if (pm.iterationData.get(\"verifyOtherCouponIntact\")) {",
+                  "  pm.test(\"Other coupon remains intact\", () => pm.expect(list.some((coupon) => coupon.code === \"SAVE10\")).to.eql(true));",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Cleanup Delete Fixture",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/coupons/{{deleteFixtureId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "coupons",
+                "{{deleteFixtureId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.iterationData.get(\"automationStatus\") === \"manual-review\") {",
+                  "  console.warn(\"Manual-review case skipped:\", pm.iterationData.get(\"id\"));",
+                  "  pm.execution.skipRequest();",
+                  "}",
+                  "",
+                  "const mode = \"admin\";",
+                  "const userToken = pm.environment.get(\"userToken\") || \"\";",
+                  "const adminToken = pm.environment.get(\"adminToken\") || \"\";",
+                  "",
+                  "function forge(token, role) {",
+                  "  try {",
+                  "    const parts = token.split(\".\");",
+                  "    const normalized = parts[1].replace(/-/g, \"+\").replace(/_/g, \"/\");",
+                  "    const payload = JSON.parse(atob(normalized));",
+                  "    payload.role = role || payload.role;",
+                  "    payload.id = Number(payload.id || 0) + 1000;",
+                  "    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))",
+                  "      .replace(/=/g, \"\").replace(/\\+/g, \"-\").replace(/\\//g, \"_\");",
+                  "    return [parts[0], encoded, parts[2]].join(\".\");",
+                  "  } catch (_) {",
+                  "    return \"forged.invalid.token\";",
+                  "  }",
+                  "}",
+                  "",
+                  "pm.request.headers.remove(\"Authorization\");",
+                  "if (mode === \"user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + userToken });",
+                  "if (mode === \"admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + adminToken });",
+                  "if (mode === \"empty\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" });",
+                  "if (mode === \"malformed\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer abc.def\" });",
+                  "if (mode === \"forged-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"user\") });",
+                  "if (mode === \"forged-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer \" + forge(userToken, \"admin\") });",
+                  "if (mode === \"basic-user\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + userToken });",
+                  "if (mode === \"basic-admin\") pm.request.headers.upsert({ key: \"Authorization\", value: \"Basic \" + adminToken });",
+                  "",
+                  "function resolveValue(value) {",
+                  "  if (Array.isArray(value)) return value.map(resolveValue);",
+                  "  if (value && typeof value === \"object\") {",
+                  "    return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveValue(item)]));",
+                  "  }",
+                  "  if (value === \"__USER_ID__\") return Number(pm.environment.get(\"userId\"));",
+                  "  if (value === \"__ADMIN_ID__\") return Number(pm.environment.get(\"adminId\"));",
+                  "  if (value === \"__CASE_CODE__\") return \"HW06_\" + pm.iterationData.get(\"id\").replace(/-/g, \"_\");",
+                  "  return value;",
+                  "}",
+                  "",
+                  "const rawBody = pm.iterationData.get(\"rawBody\");",
+                  "const body = resolveValue(pm.iterationData.get(\"body\") || {});",
+                  "pm.variables.set(\"requestBody\", rawBody !== undefined ? rawBody : JSON.stringify(body));",
+                  "",
+                  "const contentType = pm.iterationData.get(\"contentType\") || \"application/json\";",
+                  "pm.request.headers.upsert({ key: \"Content-Type\", value: contentType });"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Cleanup completed without server crash\", () => pm.expect(pm.response.code).to.be.below(500));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

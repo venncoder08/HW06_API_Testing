@@ -1,0 +1,918 @@
+[
+  {
+    "id": "FR09-TC-001",
+    "technique": "Positive percent",
+    "input": "Apply `SAVE10`, total `500000`, usage 0",
+    "expected": "`2xx`; discount `50000`; final `450000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 50000,
+    "expectedFinal": 450000
+  },
+  {
+    "id": "FR09-TC-002",
+    "technique": "Positive fixed",
+    "input": "Apply `BIGBUY`, total `600000`, usage 0",
+    "expected": "`2xx`; discount `50000`; final `550000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "BIGBUY",
+      "total_amount": 600000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 50000,
+    "expectedFinal": 550000
+  },
+  {
+    "id": "FR09-TC-003",
+    "technique": "Positive max-use coupon",
+    "input": "Apply `VIP100`, total `500000`, usage 0",
+    "expected": "`2xx`; discount `100000`; final `400000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "VIP100",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 100000,
+    "expectedFinal": 400000
+  },
+  {
+    "id": "FR09-TC-004",
+    "technique": "JWT missing, C4",
+    "input": "Gửi `B0` không có Authorization",
+    "expected": "`4xx`; không trả kết quả discount thành công",
+    "automationStatus": "ready",
+    "authMode": "missing",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-005",
+    "technique": "JWT empty",
+    "input": "Gửi `B0` với `Bearer `",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "ready",
+    "authMode": "empty",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-006",
+    "technique": "JWT malformed",
+    "input": "Gửi `B0` với `Bearer abc.def`",
+    "expected": "`4xx`; không trả discount hoặc stack trace",
+    "automationStatus": "ready",
+    "authMode": "malformed",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-007",
+    "technique": "JWT forged",
+    "input": "Sửa user ID trong JWT, giữ signature cũ",
+    "expected": "`4xx`; không đọc quota của ID giả",
+    "automationStatus": "ready",
+    "authMode": "forged-user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-008",
+    "technique": "Wrong auth scheme",
+    "input": "Gửi `B0` với Basic scheme",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "ready",
+    "authMode": "basic-user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-009",
+    "technique": "Admin identity partition",
+    "input": "Admin token, body `user_id=adminId`, coupon đủ điều kiện",
+    "expected": "`2xx`; usage được kiểm tra theo admin identity",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "__ADMIN_ID__"
+    },
+    "expectedDiscount": 50000,
+    "expectedFinal": 450000
+  },
+  {
+    "id": "FR09-TC-010",
+    "technique": "Code missing",
+    "input": "Bỏ field `code`",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-011",
+    "technique": "Code null",
+    "input": "`code=null`",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": null,
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-012",
+    "technique": "Code empty",
+    "input": "`code=\"\"`",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-013",
+    "technique": "Code whitespace",
+    "input": "`code=\"   \"`",
+    "expected": "`4xx`; không khớp coupon active",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "   ",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-014",
+    "technique": "Code nonexistent, C1",
+    "input": "`code=\"NO_SUCH_CODE\"`",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "NO_SUCH_CODE",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-015",
+    "technique": "Code inactive, C1",
+    "input": "`code=\"INACTIVE10\"`",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "fixture-required",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "Seed INACTIVE10 with is_active=0 before running this iteration.",
+    "body": {
+      "code": "INACTIVE10",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-016",
+    "technique": "Code expired, C2",
+    "input": "`code=\"EXPIRED\"`, total `200000`",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "EXPIRED",
+      "total_amount": 200000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-017",
+    "technique": "Code number type",
+    "input": "`code=123`",
+    "expected": "`4xx`; không coercion để tìm coupon",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": 123,
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-018",
+    "technique": "Code object type",
+    "input": "`code={}`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": {},
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-019",
+    "technique": "Code array type",
+    "input": "`code=[]`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": [],
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-020",
+    "technique": "Code SQL injection",
+    "input": "`code=\"' OR 1=1 --\"`",
+    "expected": "Không bypass C1; không trả coupon đầu tiên; không lộ SQL/stack trace",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "code": "' OR 1=1 --",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "allowedStatusClasses": [
+      4
+    ],
+    "assertNoDiscount": true
+  },
+  {
+    "id": "FR09-TC-021",
+    "technique": "Code XSS API portion",
+    "input": "`code=\"<script>alert(1)</script>\"`",
+    "expected": "Không server-side execution/5xx; response là JSON; không discount",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": null,
+    "notes": "",
+    "body": {
+      "code": "<script>alert(1)</script>",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "allowedStatusClasses": [
+      4
+    ],
+    "assertJsonResponse": true,
+    "assertNoDiscount": true
+  },
+  {
+    "id": "FR09-TC-022",
+    "technique": "SAVE10 below min",
+    "input": "total `299999`",
+    "expected": "`4xx`; C3 fail",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 299999,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-023",
+    "technique": "SAVE10 exact min",
+    "input": "total `300000`",
+    "expected": "`2xx`; discount `30000`; final `270000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 300000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 30000,
+    "expectedFinal": 270000
+  },
+  {
+    "id": "FR09-TC-024",
+    "technique": "SAVE10 above min",
+    "input": "total `300001`",
+    "expected": "`2xx`; discount `30000.1`; final `270000.9` theo công thức, không tự áp rounding chưa đặc tả",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 300001,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 30000.1,
+    "expectedFinal": 270000.9
+  },
+  {
+    "id": "FR09-TC-025",
+    "technique": "BIGBUY below min",
+    "input": "code `BIGBUY`, total `499999`",
+    "expected": "`4xx`; C3 fail",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "BIGBUY",
+      "total_amount": 499999,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-026",
+    "technique": "BIGBUY exact min",
+    "input": "code `BIGBUY`, total `500000`",
+    "expected": "`2xx`; discount `50000`; final `450000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "BIGBUY",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 50000,
+    "expectedFinal": 450000
+  },
+  {
+    "id": "FR09-TC-027",
+    "technique": "BIGBUY above min",
+    "input": "code `BIGBUY`, total `500001`",
+    "expected": "`2xx`; discount `50000`; final `450001`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "BIGBUY",
+      "total_amount": 500001,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 50000,
+    "expectedFinal": 450001
+  },
+  {
+    "id": "FR09-TC-028",
+    "technique": "VIP100 below min",
+    "input": "code `VIP100`, total `299999`",
+    "expected": "`4xx`; C3 fail",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "VIP100",
+      "total_amount": 299999,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-029",
+    "technique": "VIP100 exact min",
+    "input": "code `VIP100`, total `300000`",
+    "expected": "`2xx`; discount `100000`; final `200000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "VIP100",
+      "total_amount": 300000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 100000,
+    "expectedFinal": 200000
+  },
+  {
+    "id": "FR09-TC-030",
+    "technique": "VIP100 above min",
+    "input": "code `VIP100`, total `300001`",
+    "expected": "`2xx`; discount `100000`; final `200001`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "VIP100",
+      "total_amount": 300001,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 100000,
+    "expectedFinal": 200001
+  },
+  {
+    "id": "FR09-TC-031",
+    "technique": "Total zero",
+    "input": "`total_amount=0`",
+    "expected": "`4xx`; không đủ min",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 0,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-032",
+    "technique": "Total negative",
+    "input": "`total_amount=-1`",
+    "expected": "`4xx`; không đủ min, không trả final âm",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": -1,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-033",
+    "technique": "Total null",
+    "input": "`total_amount=null`",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": null,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-034",
+    "technique": "Total missing",
+    "input": "Bỏ `total_amount`",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-035",
+    "technique": "Total numeric string",
+    "input": "`total_amount=\"500000\"`",
+    "expected": "`4xx`; request body yêu cầu numeric amount",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": "500000",
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-036",
+    "technique": "Total boolean",
+    "input": "`total_amount=true`",
+    "expected": "`4xx`; không coercion",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": true,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-037",
+    "technique": "Total object",
+    "input": "`total_amount={}`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": {},
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-038",
+    "technique": "Total array",
+    "input": "`total_amount=[]`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": [],
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-039",
+    "technique": "User ID matching",
+    "input": "JWT user A, `user_id=userIdA`, body còn lại là `B0`",
+    "expected": "`2xx`; request được đánh giá theo quota user A",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 50000,
+    "expectedFinal": 450000
+  },
+  {
+    "id": "FR09-TC-040",
+    "technique": "User ID missing",
+    "input": "Bỏ `user_id`",
+    "expected": "`4xx` theo request contract hiện có; không được bỏ qua C5",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000
+    }
+  },
+  {
+    "id": "FR09-TC-041",
+    "technique": "User ID null",
+    "input": "`user_id=null`",
+    "expected": "`4xx`; không được bỏ qua C5",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": null
+    }
+  },
+  {
+    "id": "FR09-TC-042",
+    "technique": "User ID mismatch",
+    "input": "JWT user A, `user_id=userIdB`",
+    "expected": "`4xx`; không dùng quota user B và không cho IDOR",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "__ADMIN_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-043",
+    "technique": "User ID nonexistent",
+    "input": "JWT user A, `user_id=999999`",
+    "expected": "`4xx`; không tạo identity giả",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": 999999
+    }
+  },
+  {
+    "id": "FR09-TC-044",
+    "technique": "User ID zero",
+    "input": "`user_id=0`",
+    "expected": "`4xx`; không bypass C5",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": 0
+    }
+  },
+  {
+    "id": "FR09-TC-045",
+    "technique": "User ID negative",
+    "input": "`user_id=-1`",
+    "expected": "`4xx`; không bypass C5",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": -1
+    }
+  },
+  {
+    "id": "FR09-TC-046",
+    "technique": "User ID string",
+    "input": "`user_id=\"2\"`",
+    "expected": "`4xx`; không coercion identity",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "2"
+    }
+  },
+  {
+    "id": "FR09-TC-047",
+    "technique": "User ID object",
+    "input": "`user_id={}`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": {}
+    }
+  },
+  {
+    "id": "FR09-TC-048",
+    "technique": "User ID array",
+    "input": "`user_id=[]`",
+    "expected": "`4xx`; server không crash",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": []
+    }
+  },
+  {
+    "id": "FR09-TC-049",
+    "technique": "User ID SQL injection",
+    "input": "`user_id=\"1 OR 1=1\"`",
+    "expected": "`4xx`; không đọc quota user khác, không lộ SQL",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "1 OR 1=1"
+    }
+  },
+  {
+    "id": "FR09-TC-050",
+    "technique": "Usage state zero",
+    "input": "VIP100 với usage user A = 0",
+    "expected": "`2xx`; coupon còn lượt",
+    "automationStatus": "fixture-required",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "VIP100",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 100000,
+    "expectedFinal": 400000,
+    "usageFixtureCount": 0
+  },
+  {
+    "id": "FR09-TC-051",
+    "technique": "Usage state max-1",
+    "input": "VIP100 với usage user A = 1, max = 2",
+    "expected": "`2xx`; coupon còn đúng một lượt",
+    "automationStatus": "fixture-required",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "VIP100",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 100000,
+    "expectedFinal": 400000,
+    "usageFixtureCount": 1
+  },
+  {
+    "id": "FR09-TC-052",
+    "technique": "Usage state max",
+    "input": "VIP100 với usage user A = 2, max = 2",
+    "expected": "`4xx`; C5 fail, không trả discount",
+    "automationStatus": "fixture-required",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "VIP100",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "usageFixtureCount": 2
+  },
+  {
+    "id": "FR09-TC-053",
+    "technique": "Usage isolation",
+    "input": "User A đã max VIP100, user B usage = 0",
+    "expected": "User B nhận `2xx`; quota tách theo user",
+    "automationStatus": "fixture-required",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "Prepare user A at max usage and admin at zero usage.",
+    "body": {
+      "code": "VIP100",
+      "total_amount": 500000,
+      "user_id": "__ADMIN_ID__"
+    },
+    "expectedDiscount": 100000,
+    "expectedFinal": 400000
+  },
+  {
+    "id": "FR09-TC-054",
+    "technique": "State transition after use",
+    "input": "Apply VIP100 ở usage 1, hoàn thành checkout/setup usage thành 2, apply lại",
+    "expected": "Lần đầu `2xx`; lần sau `4xx`; state chuyển max-1 -> max",
+    "automationStatus": "manual-review",
+    "authMode": "user",
+    "expectedStatusClass": null,
+    "notes": "Stateful two-step case: run at usage 1, record checkout usage, then run again at usage 2.",
+    "body": {
+      "code": "VIP100",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  },
+  {
+    "id": "FR09-TC-055",
+    "technique": "Percent formula",
+    "input": "SAVE10, total `1000000`",
+    "expected": "`2xx`; discount `100000`; final `900000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 1000000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 100000,
+    "expectedFinal": 900000
+  },
+  {
+    "id": "FR09-TC-056",
+    "technique": "Fixed formula",
+    "input": "BIGBUY, total `1000000`",
+    "expected": "`2xx`; discount `50000`; final `950000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "BIGBUY",
+      "total_amount": 1000000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 50000,
+    "expectedFinal": 950000
+  },
+  {
+    "id": "FR09-TC-057",
+    "technique": "Success schema",
+    "input": "Apply `SAVE10`, total `700000`, usage 0",
+    "expected": "`2xx`; JSON có numeric `discount_amount=70000`, `final_amount=630000`; không lộ password/token",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 700000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 70000,
+    "expectedFinal": 630000,
+    "assertNoSensitiveFields": true
+  },
+  {
+    "id": "FR09-TC-058",
+    "technique": "Failure schema",
+    "input": "Apply `NO_SUCH_CODE`, total `700000`",
+    "expected": "`4xx`; JSON không chứa kết quả discount thành công hoặc dữ liệu user nhạy cảm",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "NO_SUCH_CODE",
+      "total_amount": 700000,
+      "user_id": "__USER_ID__"
+    },
+    "assertNoDiscount": true,
+    "assertNoSensitiveFields": true
+  }
+]

@@ -1,0 +1,5 @@
+node_modules/
+reports/newman/*.html
+reports/newman/*.json
+postman/environments/*.local.json
+*.log

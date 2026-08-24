@@ -18,13 +18,14 @@ Runner and tools:
 
 Pipeline sequence:
 
-1. Check out the repository.
-2. Install the SUT and Newman dependencies with `npm ci`.
-3. Validate all Postman JSON files and collection scripts.
-4. Start the SUT, which creates and seeds a fresh SQLite database, then wait for its health check.
-5. Run `npm run newman:ci --prefix hw06-api-tests`.
-6. Upload HTML reports, JUnit XML, `RUN-SUMMARY.txt` and `sut.log` even when tests fail.
-7. Stop the SUT process.
+1. Check out the API testing repository.
+2. Clone `ttbhanh/eshop-sut` and pin commit `85af3ba875c88283615e22cb108f13e2fccaf0e9`.
+3. Install the SUT and Newman dependencies with `npm ci`.
+4. Validate all Postman JSON files and collection scripts.
+5. Start the SUT, which creates and seeds a fresh SQLite database, then wait for its health check.
+6. Run `npm run newman:ci --prefix hw06-api-tests`.
+7. Upload HTML reports, JUnit XML, `RUN-SUMMARY.txt` and `sut.log` even when tests fail.
+8. Stop the SUT process.
 
 ## 3. CI regression cases
 

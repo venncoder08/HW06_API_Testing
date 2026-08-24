@@ -43,9 +43,9 @@ Total: 19 CI iterations.
 
 | Evidence | Value |
 | --- | --- |
-| Commit | `TODO_GREEN_SHA` |
-| Commit URL | `TODO_GREEN_COMMIT_URL` |
-| Actions run | `TODO_GREEN_RUN_URL` |
+| Commit | `e4c5f9160aa821ccb8588f8a6c867a3bb78a5586` |
+| Commit URL | https://github.com/venncoder08/HW06_API_Testing/commit/e4c5f9160aa821ccb8588f8a6c867a3bb78a5586 |
+| Actions run | https://github.com/venncoder08/HW06_API_Testing/actions/runs/32733160221 |
 | Result | All CI API test iterations passed |
 | Screenshot | `docs/images/ci-green.png` |
 | Artifact | `newman-api-test-reports` |
@@ -56,9 +56,9 @@ The red demonstration commit changes only `FR04-TC-001` in the CI-only data file
 
 | Evidence | Value |
 | --- | --- |
-| Commit | `TODO_RED_SHA` |
-| Commit URL | `TODO_RED_COMMIT_URL` |
-| Actions run | `TODO_RED_RUN_URL` |
+| Commit | `b3a3c6c3030cc1caf54caee75d16951b2f63d8e3` |
+| Commit URL | https://github.com/venncoder08/HW06_API_Testing/commit/b3a3c6c3030cc1caf54caee75d16951b2f63d8e3 |
+| Actions run | https://github.com/venncoder08/HW06_API_Testing/actions/runs/32742769020 |
 | Result | One intentionally failing CI testcase |
 | Screenshot | `docs/images/ci-red.png` |
 | Failed testcase | `FR04-TC-001` |
@@ -70,14 +70,18 @@ After collecting the red-run evidence, revert the demonstration commit so the de
 
 | Evidence | Value |
 | --- | --- |
-| Revert commit | `TODO_REVERT_SHA` |
-| Revert Actions run | `TODO_REVERT_RUN_URL` |
+| Recovery commit | `e4b5f3a378447e3e7ccb501823e8f6d95859120e` |
+| Recovery Actions run | https://github.com/venncoder08/HW06_API_Testing/actions/runs/32743294527 |
 
 ## 7. Screenshots and links checklist
 
-- [ ] Green Actions summary screenshot added as `docs/images/ci-green.png`.
-- [ ] Red Actions summary and failed assertion screenshot added as `docs/images/ci-red.png`.
-- [ ] Green commit and Actions URLs filled in.
-- [ ] Red commit and Actions URLs filled in.
-- [ ] Revert commit and Actions URL filled in.
-- [ ] Both Actions runs expose the `newman-api-test-reports` artifact.
+- [x] Green Actions summary screenshot added as `docs/images/ci-green.png`.
+- [x] Red Actions summary and failed assertion screenshot added as `docs/images/ci-red.png`.
+- [x] Green commit and Actions URLs filled in.
+- [x] Red commit and Actions URLs filled in.
+- [x] Recovery commit and Actions URL filled in.
+- [x] Workflow uploads the `newman-api-test-reports` artifact.
+
+## 8. Scope disclosure
+
+The green demonstration proves that every testcase included in the deterministic 19-iteration blocking CI suite passes. It does not claim that all 197 diagnostic cases pass: the full suite intentionally preserves known SUT failures for defect reporting. This interpretation is disclosed because the assignment wording may be read as requiring all 197 cases in the green pipeline.

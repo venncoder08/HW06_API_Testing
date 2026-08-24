@@ -1,0 +1,6 @@
+interface:
+  display_name: "HW06 API Testing"
+  short_description: "Audit and report EShop API testing evidence"
+  default_prompt: "Use $hw06-api-testing to review and complete my HW06 EShop API testing deliverables."
+policy:
+  allow_implicit_invocation: true

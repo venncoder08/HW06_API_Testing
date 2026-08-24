@@ -36,10 +36,9 @@ jobs:
       - name: Validate Postman artifacts
         run: npm run review:json --prefix hw06-api-tests
 
-      - name: Reset CI database and start SUT
+      - name: Start SUT
         shell: bash
         run: |
-          rm -f eshop-sut/backend/database.sqlite
           node eshop-sut/backend/server.js > sut.log 2>&1 &
           echo $! > sut.pid
 

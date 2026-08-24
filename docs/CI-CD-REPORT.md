@@ -21,7 +21,7 @@ Pipeline sequence:
 1. Check out the repository.
 2. Install the SUT and Newman dependencies with `npm ci`.
 3. Validate all Postman JSON files and collection scripts.
-4. Remove the runner's SQLite file, start the SUT and wait for its health check.
+4. Start the SUT, which creates and seeds a fresh SQLite database, then wait for its health check.
 5. Run `npm run newman:ci --prefix hw06-api-tests`.
 6. Upload HTML reports, JUnit XML, `RUN-SUMMARY.txt` and `sut.log` even when tests fail.
 7. Stop the SUT process.

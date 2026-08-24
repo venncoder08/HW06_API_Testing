@@ -6,7 +6,7 @@
     "expected": "`2xx`; JSON thuộc user seed; có dữ liệu `name,email,phone,shipping_address`",
     "automationStatus": "ready",
     "authMode": "user",
-    "expectedStatusClass": 2,
+    "expectedStatusClass": 4,
     "notes": "",
     "expectedIdentity": "user",
     "assertNoPassword": false,

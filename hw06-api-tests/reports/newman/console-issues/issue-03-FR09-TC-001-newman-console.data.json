@@ -1,0 +1,19 @@
+[
+  {
+    "id": "FR09-TC-001",
+    "technique": "Positive percent",
+    "input": "Apply `SAVE10`, total `500000`, usage 0",
+    "expected": "`2xx`; discount `50000`; final `450000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 50000,
+    "expectedFinal": 450000
+  }
+]

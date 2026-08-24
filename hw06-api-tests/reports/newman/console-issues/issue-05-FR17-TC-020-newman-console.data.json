@@ -1,0 +1,21 @@
+[
+  {
+    "id": "FR17-TC-020",
+    "technique": "Code duplicate",
+    "input": "Dùng code `SAVE10` đã tồn tại",
+    "expected": "`4xx`; chỉ một `SAVE10` tồn tại; không lộ raw SQLite error",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "code": "SAVE10",
+      "type": "percent",
+      "discount_value": 15,
+      "min_order_amount": 200000,
+      "expired_at": "2099-12-31",
+      "max_uses_per_user": 1
+    },
+    "expectedCreated": false
+  }
+]

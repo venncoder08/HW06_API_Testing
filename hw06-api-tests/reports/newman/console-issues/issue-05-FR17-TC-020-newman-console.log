@@ -1,0 +1,64 @@
+HW06 - FR17 Coupon Administration
+
+□ CREATE Coupon - run with fr17-create.json
+└ Setup - Login User
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 635B, 26ms]
+
+└ Setup - Login Admin
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 640B, 6ms]
+
+└ Execute FR17 CREATE case
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ admin/coupons'
+  └
+  POST http://localhost:3000/api/admin/coupons [500 Internal Server Error, 355B, 5ms]
+
+└ Verify Coupon List
+  ┌
+  │ 'X-Student-Id:', '23127522', 'GET', '{{baseUrl}}/api/c
+  │ oupons'
+  └
+  GET http://localhost:3000/api/coupons [200 OK, 874B, 7ms]
+
+└ Cleanup Created Coupon
+  ┌
+  │ 'X-Student-Id:', '23127522', 'DELETE', '{{baseUrl}}/ap
+  │ i/admin/coupons/{{createdCouponId}}'
+  └
+  DELETE http://localhost:3000/api/admin/coupons/0 [200 OK, 295B, 3ms]
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │               5 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │               5 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │               8 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │               5 │               1 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 534ms                                   │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 1.44kB (approx)                        │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 9ms [min: 3ms, max: 26ms, s.d.: 8ms] │
+└─────────────────────────────────────────────────────────────┘
+
+  #  failure         detail                                                                        
+                                                                                                   
+ 1.  AssertionError  Expected HTTP status class                                                    
+                     expected 5 to deeply equal 4                                                  
+                     at assertion:0 in test-script                                                 
+                     inside "CREATE Coupon - run with fr17-create.json / Execute FR17 CREATE case" 

@@ -1,0 +1,90 @@
+[
+  {
+    "issue": 1,
+    "testcaseId": "FR04-TC-009",
+    "title": "GET profile exposes password",
+    "executionStatus": "FAIL",
+    "exitCode": 1,
+    "logPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-01-FR04-TC-009-newman-console.log",
+    "htmlPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-01-FR04-TC-009-newman-console.html",
+    "pngPath": "D:\\2025-2026 HK9\\Test\\HW07\\issues\\issue-01-FR04-TC-009-newman-console.png",
+    "viewportHeight": 1797
+  },
+  {
+    "issue": 2,
+    "testcaseId": "FR04-TC-020",
+    "title": "PUT profile accepts an invalid short phone",
+    "executionStatus": "FAIL",
+    "exitCode": 1,
+    "logPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-02-FR04-TC-020-newman-console.log",
+    "htmlPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-02-FR04-TC-020-newman-console.html",
+    "pngPath": "D:\\2025-2026 HK9\\Test\\HW07\\issues\\issue-02-FR04-TC-020-newman-console.png",
+    "viewportHeight": 3282
+  },
+  {
+    "issue": 3,
+    "testcaseId": "FR09-TC-001",
+    "title": "Percentage coupon returns incorrect amounts",
+    "executionStatus": "FAIL",
+    "exitCode": 1,
+    "logPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-03-FR09-TC-001-newman-console.log",
+    "htmlPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-03-FR09-TC-001-newman-console.html",
+    "pngPath": "D:\\2025-2026 HK9\\Test\\HW07\\issues\\issue-03-FR09-TC-001-newman-console.png",
+    "viewportHeight": 1932
+  },
+  {
+    "issue": 4,
+    "testcaseId": "FR17-TC-003",
+    "title": "Regular user can list coupons",
+    "executionStatus": "FAIL",
+    "exitCode": 1,
+    "logPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-04-FR17-TC-003-newman-console.log",
+    "htmlPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-04-FR17-TC-003-newman-console.html",
+    "pngPath": "D:\\2025-2026 HK9\\Test\\HW07\\issues\\issue-04-FR17-TC-003-newman-console.png",
+    "viewportHeight": 1797
+  },
+  {
+    "issue": 5,
+    "testcaseId": "FR17-TC-020",
+    "title": "Duplicate coupon code returns HTTP 500",
+    "executionStatus": "FAIL",
+    "exitCode": 1,
+    "logPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-05-FR17-TC-020-newman-console.log",
+    "htmlPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-05-FR17-TC-020-newman-console.html",
+    "pngPath": "D:\\2025-2026 HK9\\Test\\HW07\\issues\\issue-05-FR17-TC-020-newman-console.png",
+    "viewportHeight": 2175
+  },
+  {
+    "issue": 6,
+    "testcaseId": "FR17-TC-078",
+    "title": "Regular user can delete a coupon",
+    "executionStatus": "FAIL",
+    "exitCode": 1,
+    "logPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-06-FR17-TC-078-newman-console.log",
+    "htmlPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-06-FR17-TC-078-newman-console.html",
+    "pngPath": "D:\\2025-2026 HK9\\Test\\HW07\\issues\\issue-06-FR17-TC-078-newman-console.png",
+    "viewportHeight": 2499
+  },
+  {
+    "issue": 7,
+    "testcaseId": "FR04-TC-007",
+    "title": "Basic authorization scheme is accepted",
+    "executionStatus": "FAIL",
+    "exitCode": 1,
+    "logPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-07-FR04-TC-007-newman-console.log",
+    "htmlPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-07-FR04-TC-007-newman-console.html",
+    "pngPath": "D:\\2025-2026 HK9\\Test\\HW07\\issues\\issue-07-FR04-TC-007-newman-console.png",
+    "viewportHeight": 1797
+  },
+  {
+    "issue": 8,
+    "testcaseId": "FR04-TC-010",
+    "title": "GET profile exposes reset_token",
+    "executionStatus": "FAIL",
+    "exitCode": 1,
+    "logPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-08-FR04-TC-010-newman-console.log",
+    "htmlPath": "D:\\2025-2026 HK9\\Test\\HW07\\hw06-api-tests\\reports\\newman\\console-issues\\issue-08-FR04-TC-010-newman-console.html",
+    "pngPath": "D:\\2025-2026 HK9\\Test\\HW07\\issues\\issue-08-FR04-TC-010-newman-console.png",
+    "viewportHeight": 1797
+  }
+]

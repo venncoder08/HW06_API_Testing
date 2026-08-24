@@ -1,0 +1,50 @@
+HW06 - FR17 Coupon Administration
+
+□ GET Coupons - run with fr17-get.json
+└ Setup - Login User
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 635B, 25ms]
+
+└ Setup - Login Admin
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 640B, 4ms]
+
+└ Execute FR17 GET case
+  ┌
+  │ 'X-Student-Id:', '23127522', 'GET', '{{baseUrl}}/api/c
+  │ oupons'
+  └
+  GET http://localhost:3000/api/coupons [200 OK, 874B, 6ms]
+
+┌─────────────────────────┬──────────────────┬─────────────────┐
+│                         │         executed │          failed │
+├─────────────────────────┼──────────────────┼─────────────────┤
+│              iterations │                1 │               0 │
+├─────────────────────────┼──────────────────┼─────────────────┤
+│                requests │                3 │               0 │
+├─────────────────────────┼──────────────────┼─────────────────┤
+│            test-scripts │                3 │               0 │
+├─────────────────────────┼──────────────────┼─────────────────┤
+│      prerequest-scripts │                4 │               0 │
+├─────────────────────────┼──────────────────┼─────────────────┤
+│              assertions │                3 │               1 │
+├─────────────────────────┴──────────────────┴─────────────────┤
+│ total run duration: 317ms                                    │
+├──────────────────────────────────────────────────────────────┤
+│ total data received: 1.34kB (approx)                         │
+├──────────────────────────────────────────────────────────────┤
+│ average response time: 11ms [min: 4ms, max: 25ms, s.d.: 9ms] │
+└──────────────────────────────────────────────────────────────┘
+
+  #  failure         detail                                                                
+                                                                                           
+ 1.  AssertionError  Expected HTTP status class                                            
+                     expected 2 to deeply equal 4                                          
+                     at assertion:0 in test-script                                         
+                     inside "GET Coupons - run with fr17-get.json / Execute FR17 GET case" 

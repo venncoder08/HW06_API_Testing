@@ -1,0 +1,14 @@
+[
+  {
+    "id": "FR17-TC-078",
+    "technique": "Delete user role",
+    "input": "DELETE ID tồn tại bằng user token",
+    "expected": "`4xx`; coupon vẫn tồn tại",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "deleteIdMode": "created",
+    "expectedFixturePresentAfterDelete": true
+  }
+]

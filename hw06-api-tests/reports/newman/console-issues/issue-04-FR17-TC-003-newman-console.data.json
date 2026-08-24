@@ -1,0 +1,16 @@
+[
+  {
+    "id": "FR17-TC-003",
+    "technique": "GET role authorization",
+    "input": "GET coupons bằng user token",
+    "expected": "`4xx`; không trả coupon list",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "assertCouponArray": false,
+    "assertRequiredCouponFields": false,
+    "assertNoSensitiveFields": false,
+    "expectEmptyArray": false
+  }
+]

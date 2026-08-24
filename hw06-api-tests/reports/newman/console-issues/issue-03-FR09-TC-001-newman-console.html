@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Issue #3 Newman Console Evidence</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 42px; background: #090d10; color: #e9f0ec; font-family: Consolas, "Cascadia Mono", monospace; }
+  .terminal { width: 1680px; padding: 34px 38px 40px; border: 1px solid #385047; border-radius: 18px; background: linear-gradient(145deg, #11191d, #090d10); box-shadow: 0 18px 60px rgba(0,0,0,.42); }
+  .bar { display: flex; gap: 10px; margin-bottom: 28px; }
+  .dot { width: 16px; height: 16px; border-radius: 50%; }
+  .red { background: #ff5f57; } .yellow { background: #febc2e; } .green { background: #28c840; }
+  h1 { margin: 0 0 12px; color: #ff8e7d; font: 700 30px/1.25 "Segoe UI", sans-serif; }
+  .meta { margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid #385047; color: #a9bbb3; font-size: 19px; line-height: 1.55; }
+  .meta strong { color: #e9f0ec; }
+  .command { margin: 0 0 22px; padding: 14px 18px; background: #17231f; border-left: 5px solid #52c7a1; color: #d5fff1; font-size: 18px; white-space: pre-wrap; }
+  pre { margin: 0; font: 18px/1.38 Consolas, "Cascadia Mono", monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+  pre span { display: block; min-height: 1.38em; }
+  pre .error { color: #ff8e7d; font-weight: 700; }
+  pre .accent { color: #74e5bd; }
+</style>
+</head>
+<body>
+<section class="terminal">
+  <div class="bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+  <h1>GitHub Issue #3: Percentage coupon returns incorrect amounts</h1>
+  <div class="meta"><strong>Testcase:</strong> FR09-TC-001<br><strong>Execution:</strong> Newman CLI against http://127.0.0.1:3000<br><strong>Exit code:</strong> 1<br><strong>Generated:</strong> 2026-08-24T16:54:59.025Z</div>
+  <div class="command">PS&gt; node node_modules/newman/bin/newman.js run ... --folder &quot;Apply Coupon - run with fr09-apply.json&quot; -d issue-03-FR09-TC-001-newman-console.data.json --reporters cli</div>
+  <pre><span class="">HW06 - FR09 Apply Coupon</span><span class=""> </span><span class="">□ Apply Coupon - run with fr09-apply.json</span><span class="">└ Setup - Login User</span><span class="">  ┌</span><span class="accent">  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/</span><span class="">  │ login'</span><span class="">  └</span><span class="">  POST http://localhost:3000/api/login [200 OK, 635B, 27ms]</span><span class=""> </span><span class="">└ Setup - Login Admin</span><span class="">  ┌</span><span class="accent">  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/</span><span class="">  │ login'</span><span class="">  └</span><span class="">  POST http://localhost:3000/api/login [200 OK, 640B, 10ms]</span><span class=""> </span><span class="">└ Execute FR09 case</span><span class="">  ┌</span><span class="accent">  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/</span><span class="">  │ apply-coupon'</span><span class="">  └</span><span class="">  POST http://localhost:3000/api/apply-coupon [200 OK, 396B, 4ms]</span><span class=""> </span><span class="">┌─────────────────────────┬──────────────────┬─────────────────┐</span><span class="error">│                         │         executed │          failed │</span><span class="">├─────────────────────────┼──────────────────┼─────────────────┤</span><span class="">│              iterations │                1 │               0 │</span><span class="">├─────────────────────────┼──────────────────┼─────────────────┤</span><span class="accent">│                requests │                3 │               0 │</span><span class="">├─────────────────────────┼──────────────────┼─────────────────┤</span><span class="accent">│            test-scripts │                3 │               0 │</span><span class="">├─────────────────────────┼──────────────────┼─────────────────┤</span><span class="">│      prerequest-scripts │                4 │               0 │</span><span class="">├─────────────────────────┼──────────────────┼─────────────────┤</span><span class="accent">│              assertions │                5 │               2 │</span><span class="">├─────────────────────────┴──────────────────┴─────────────────┤</span><span class="">│ total run duration: 302ms                                    │</span><span class="">├──────────────────────────────────────────────────────────────┤</span><span class="">│ total data received: 865B (approx)                           │</span><span class="">├──────────────────────────────────────────────────────────────┤</span><span class="">│ average response time: 13ms [min: 4ms, max: 27ms, s.d.: 9ms] │</span><span class="">└──────────────────────────────────────────────────────────────┘</span><span class=""> </span><span class="error">  #  failure         detail                                                               </span><span class="">                                                                                          </span><span class="error"> 1.  AssertionError  discount_amount                                                      </span><span class="error">                     expected -4500000 to deeply equal 50000                              </span><span class="">                     at assertion:1 in test-script                                        </span><span class="">                     inside &quot;Apply Coupon - run with fr09-apply.json / Execute FR09 case&quot; </span><span class="">                                                                                          </span><span class="error"> 2.  AssertionError  final_amount                                                         </span><span class="error">                     expected 5000000 to deeply equal 450000                              </span><span class="">                     at assertion:2 in test-script                                        </span><span class="">                     inside &quot;Apply Coupon - run with fr09-apply.json / Execute FR09 case&quot; </span><span class=""> </span></pre>
+</section>
+</body>
+</html>

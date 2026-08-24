@@ -1,0 +1,105 @@
+HW06 - FR04 Profile
+
+□ PUT Profile - run with fr04-put.json
+└ Setup - Login User
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 635B, 40ms]
+
+└ Setup - Login Admin
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 640B, 7ms]
+
+└ Snapshot User
+  ┌
+  │ 'X-Student-Id:', '23127522', 'GET', '{{baseUrl}}/api/u
+  │ sers/me'
+  └
+  GET http://localhost:3000/api/users/me [200 OK, 452B, 7ms]
+
+└ Snapshot Admin
+  ┌
+  │ 'X-Student-Id:', '23127522', 'GET', '{{baseUrl}}/api/u
+  │ sers/me'
+  └
+  GET http://localhost:3000/api/users/me [200 OK, 455B, 7ms]
+
+└ Execute FR04 PUT case
+  ┌
+  │ 'X-Student-Id:', '23127522', 'PUT', '{{baseUrl}}/api/u
+  │ sers/me'
+  └
+  PUT http://localhost:3000/api/users/me [200 OK, 296B, 16ms]
+
+└ Verify User Profile
+  ┌
+  │ 'X-Student-Id:', '23127522', 'GET', '{{baseUrl}}/api/u
+  │ sers/me'
+  └
+  GET http://localhost:3000/api/users/me [200 OK, 482B, 7ms]
+
+└ Verify Admin Profile
+  ┌
+  │ 'X-Student-Id:', '23127522', 'GET', '{{baseUrl}}/api/u
+  │ sers/me'
+  └
+  GET http://localhost:3000/api/users/me [200 OK, 455B, 16ms]
+
+└ Verify Seed Password
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 665B, 5ms]
+
+┌─────────────────────────┬──────────────────┬──────────────────┐
+│                         │         executed │           failed │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│              iterations │                1 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│                requests │                8 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│            test-scripts │                8 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│      prerequest-scripts │               13 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│              assertions │               20 │                5 │
+├─────────────────────────┴──────────────────┴──────────────────┤
+│ total run duration: 813ms                                     │
+├───────────────────────────────────────────────────────────────┤
+│ total data received: 1.93kB (approx)                          │
+├───────────────────────────────────────────────────────────────┤
+│ average response time: 13ms [min: 5ms, max: 40ms, s.d.: 10ms] │
+└───────────────────────────────────────────────────────────────┘
+
+  #  failure         detail                                                                         
+                                                                                                    
+ 1.  AssertionError  Expected HTTP status class                                                     
+                     expected 2 to deeply equal 4                                                   
+                     at assertion:0 in test-script                                                  
+                     inside "PUT Profile - run with fr04-put.json / Execute FR04 PUT case"          
+                                                                                                    
+ 2.  AssertionError  Unchanged field: name                                                          
+                     expected 'Nguyen Van A' to deeply equal 'Test User'                            
+                     at assertion:1 in test-script                                                  
+                     inside "PUT Profile - run with fr04-put.json / Verify User Profile"            
+                                                                                                    
+ 3.  AssertionError  Unchanged field: phone                                                         
+                     expected '012345678' to deeply equal null                                      
+                     at assertion:2 in test-script                                                  
+                     inside "PUT Profile - run with fr04-put.json / Verify User Profile"            
+                                                                                                    
+ 4.  AssertionError  Unchanged field: shipping_address                                              
+                     expected '123 Le Loi, Q1, TP.HCM' to deeply equal null                         
+                     at assertion:3 in test-script                                                  
+                     inside "PUT Profile - run with fr04-put.json / Verify User Profile"            
+                                                                                                    
+ 5.  AssertionError  No password exposed                                                            
+                     expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password' 
+                     at assertion:6 in test-script                                                  
+                     inside "PUT Profile - run with fr04-put.json / Verify User Profile"            

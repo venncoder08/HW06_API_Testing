@@ -1,0 +1,76 @@
+HW06 - FR17 Coupon Administration
+
+□ DELETE Coupon - run with fr17-delete.json
+└ Setup - Login User
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 635B, 48ms]
+
+└ Setup - Login Admin
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 640B, 11ms]
+
+└ Prepare Delete Fixture
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ admin/coupons'
+  └
+  POST http://localhost:3000/api/admin/coupons [200 OK, 302B, 10ms]
+
+└ Execute FR17 DELETE case
+  ┌
+  │ 'X-Student-Id:', '23127522', 'DELETE', '{{baseUrl}}/ap
+  │ i/admin/coupons/{{deleteTargetId}}'
+  └
+  DELETE http://localhost:3000/api/admin/coupons/5 [200 OK, 295B, 7ms]
+
+└ Verify Delete State
+  ┌
+  │ 'X-Student-Id:', '23127522', 'GET', '{{baseUrl}}/api/c
+  │ oupons'
+  └
+  GET http://localhost:3000/api/coupons [200 OK, 874B, 5ms]
+
+└ Cleanup Delete Fixture
+  ┌
+  │ 'X-Student-Id:', '23127522', 'DELETE', '{{baseUrl}}/ap
+  │ i/admin/coupons/{{deleteFixtureId}}'
+  └
+  DELETE http://localhost:3000/api/admin/coupons/5 [200 OK, 295B, 5ms]
+
+┌─────────────────────────┬──────────────────┬──────────────────┐
+│                         │         executed │           failed │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│              iterations │                1 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│                requests │                6 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│            test-scripts │                6 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│      prerequest-scripts │               10 │                0 │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│              assertions │                7 │                2 │
+├─────────────────────────┴──────────────────┴──────────────────┤
+│ total run duration: 637ms                                     │
+├───────────────────────────────────────────────────────────────┤
+│ total data received: 1.43kB (approx)                          │
+├───────────────────────────────────────────────────────────────┤
+│ average response time: 14ms [min: 5ms, max: 48ms, s.d.: 15ms] │
+└───────────────────────────────────────────────────────────────┘
+
+  #  failure         detail                                                                        
+                                                                                                   
+ 1.  AssertionError  Expected HTTP status class                                                    
+                     expected 2 to deeply equal 4                                                  
+                     at assertion:0 in test-script                                                 
+                     inside "DELETE Coupon - run with fr17-delete.json / Execute FR17 DELETE case" 
+                                                                                                   
+ 2.  AssertionError  Delete state is correct                                                       
+                     expected false to deeply equal true                                           
+                     at assertion:1 in test-script                                                 
+                     inside "DELETE Coupon - run with fr17-delete.json / Verify Delete State"      

@@ -1,0 +1,15 @@
+[
+  {
+    "id": "FR04-TC-009",
+    "technique": "Sensitive data",
+    "input": "GET hợp lệ bằng user token",
+    "expected": "Response không có `password`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "expectedIdentity": "user",
+    "assertNoPassword": true,
+    "assertNoResetToken": false
+  }
+]

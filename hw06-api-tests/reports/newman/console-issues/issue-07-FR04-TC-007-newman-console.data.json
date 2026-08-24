@@ -1,0 +1,15 @@
+[
+  {
+    "id": "FR04-TC-007",
+    "technique": "Wrong auth scheme",
+    "input": "GET với `Basic {{userToken}}`",
+    "expected": "`4xx`; không trả profile",
+    "automationStatus": "ready",
+    "authMode": "basic-user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "expectedIdentity": null,
+    "assertNoPassword": false,
+    "assertNoResetToken": false
+  }
+]

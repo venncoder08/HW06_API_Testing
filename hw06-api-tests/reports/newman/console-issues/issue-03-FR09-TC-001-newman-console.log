@@ -1,0 +1,55 @@
+HW06 - FR09 Apply Coupon
+
+□ Apply Coupon - run with fr09-apply.json
+└ Setup - Login User
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 635B, 27ms]
+
+└ Setup - Login Admin
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ login'
+  └
+  POST http://localhost:3000/api/login [200 OK, 640B, 10ms]
+
+└ Execute FR09 case
+  ┌
+  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/
+  │ apply-coupon'
+  └
+  POST http://localhost:3000/api/apply-coupon [200 OK, 396B, 4ms]
+
+┌─────────────────────────┬──────────────────┬─────────────────┐
+│                         │         executed │          failed │
+├─────────────────────────┼──────────────────┼─────────────────┤
+│              iterations │                1 │               0 │
+├─────────────────────────┼──────────────────┼─────────────────┤
+│                requests │                3 │               0 │
+├─────────────────────────┼──────────────────┼─────────────────┤
+│            test-scripts │                3 │               0 │
+├─────────────────────────┼──────────────────┼─────────────────┤
+│      prerequest-scripts │                4 │               0 │
+├─────────────────────────┼──────────────────┼─────────────────┤
+│              assertions │                5 │               2 │
+├─────────────────────────┴──────────────────┴─────────────────┤
+│ total run duration: 302ms                                    │
+├──────────────────────────────────────────────────────────────┤
+│ total data received: 865B (approx)                           │
+├──────────────────────────────────────────────────────────────┤
+│ average response time: 13ms [min: 4ms, max: 27ms, s.d.: 9ms] │
+└──────────────────────────────────────────────────────────────┘
+
+  #  failure         detail                                                               
+                                                                                          
+ 1.  AssertionError  discount_amount                                                      
+                     expected -4500000 to deeply equal 50000                              
+                     at assertion:1 in test-script                                        
+                     inside "Apply Coupon - run with fr09-apply.json / Execute FR09 case" 
+                                                                                          
+ 2.  AssertionError  final_amount                                                         
+                     expected 5000000 to deeply equal 450000                              
+                     at assertion:2 in test-script                                        
+                     inside "Apply Coupon - run with fr09-apply.json / Execute FR09 case" 

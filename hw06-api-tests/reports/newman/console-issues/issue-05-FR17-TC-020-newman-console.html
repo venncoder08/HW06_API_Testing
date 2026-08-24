@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Issue #5 Newman Console Evidence</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 42px; background: #090d10; color: #e9f0ec; font-family: Consolas, "Cascadia Mono", monospace; }
+  .terminal { width: 1680px; padding: 34px 38px 40px; border: 1px solid #385047; border-radius: 18px; background: linear-gradient(145deg, #11191d, #090d10); box-shadow: 0 18px 60px rgba(0,0,0,.42); }
+  .bar { display: flex; gap: 10px; margin-bottom: 28px; }
+  .dot { width: 16px; height: 16px; border-radius: 50%; }
+  .red { background: #ff5f57; } .yellow { background: #febc2e; } .green { background: #28c840; }
+  h1 { margin: 0 0 12px; color: #ff8e7d; font: 700 30px/1.25 "Segoe UI", sans-serif; }
+  .meta { margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid #385047; color: #a9bbb3; font-size: 19px; line-height: 1.55; }
+  .meta strong { color: #e9f0ec; }
+  .command { margin: 0 0 22px; padding: 14px 18px; background: #17231f; border-left: 5px solid #52c7a1; color: #d5fff1; font-size: 18px; white-space: pre-wrap; }
+  pre { margin: 0; font: 18px/1.38 Consolas, "Cascadia Mono", monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+  pre span { display: block; min-height: 1.38em; }
+  pre .error { color: #ff8e7d; font-weight: 700; }
+  pre .accent { color: #74e5bd; }
+</style>
+</head>
+<body>
+<section class="terminal">
+  <div class="bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+  <h1>GitHub Issue #5: Duplicate coupon code returns HTTP 500</h1>
+  <div class="meta"><strong>Testcase:</strong> FR17-TC-020<br><strong>Execution:</strong> Newman CLI against http://127.0.0.1:3000<br><strong>Exit code:</strong> 1<br><strong>Generated:</strong> 2026-08-24T16:55:02.044Z</div>
+  <div class="command">PS&gt; node node_modules/newman/bin/newman.js run ... --folder &quot;CREATE Coupon - run with fr17-create.json&quot; -d issue-05-FR17-TC-020-newman-console.data.json --reporters cli</div>
+  <pre><span class="">HW06 - FR17 Coupon Administration</span><span class=""> </span><span class="">□ CREATE Coupon - run with fr17-create.json</span><span class="">└ Setup - Login User</span><span class="">  ┌</span><span class="accent">  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/</span><span class="">  │ login'</span><span class="">  └</span><span class="">  POST http://localhost:3000/api/login [200 OK, 635B, 26ms]</span><span class=""> </span><span class="">└ Setup - Login Admin</span><span class="">  ┌</span><span class="accent">  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/</span><span class="">  │ login'</span><span class="">  └</span><span class="">  POST http://localhost:3000/api/login [200 OK, 640B, 6ms]</span><span class=""> </span><span class="">└ Execute FR17 CREATE case</span><span class="">  ┌</span><span class="accent">  │ 'X-Student-Id:', '23127522', 'POST', '{{baseUrl}}/api/</span><span class="">  │ admin/coupons'</span><span class="">  └</span><span class="error">  POST http://localhost:3000/api/admin/coupons [500 Internal Server Error, 355B, 5ms]</span><span class=""> </span><span class="">└ Verify Coupon List</span><span class="">  ┌</span><span class="accent">  │ 'X-Student-Id:', '23127522', 'GET', '{{baseUrl}}/api/c</span><span class="">  │ oupons'</span><span class="">  └</span><span class="">  GET http://localhost:3000/api/coupons [200 OK, 874B, 7ms]</span><span class=""> </span><span class="">└ Cleanup Created Coupon</span><span class="">  ┌</span><span class="accent">  │ 'X-Student-Id:', '23127522', 'DELETE', '{{baseUrl}}/ap</span><span class="">  │ i/admin/coupons/{{createdCouponId}}'</span><span class="">  └</span><span class="">  DELETE http://localhost:3000/api/admin/coupons/0 [200 OK, 295B, 3ms]</span><span class=""> </span><span class="">┌─────────────────────────┬─────────────────┬─────────────────┐</span><span class="error">│                         │        executed │          failed │</span><span class="">├─────────────────────────┼─────────────────┼─────────────────┤</span><span class="">│              iterations │               1 │               0 │</span><span class="">├─────────────────────────┼─────────────────┼─────────────────┤</span><span class="accent">│                requests │               5 │               0 │</span><span class="">├─────────────────────────┼─────────────────┼─────────────────┤</span><span class="accent">│            test-scripts │               5 │               0 │</span><span class="">├─────────────────────────┼─────────────────┼─────────────────┤</span><span class="">│      prerequest-scripts │               8 │               0 │</span><span class="">├─────────────────────────┼─────────────────┼─────────────────┤</span><span class="accent">│              assertions │               5 │               1 │</span><span class="">├─────────────────────────┴─────────────────┴─────────────────┤</span><span class="">│ total run duration: 534ms                                   │</span><span class="">├─────────────────────────────────────────────────────────────┤</span><span class="">│ total data received: 1.44kB (approx)                        │</span><span class="">├─────────────────────────────────────────────────────────────┤</span><span class="">│ average response time: 9ms [min: 3ms, max: 26ms, s.d.: 8ms] │</span><span class="">└─────────────────────────────────────────────────────────────┘</span><span class=""> </span><span class="error">  #  failure         detail                                                                        </span><span class="">                                                                                                   </span><span class="error"> 1.  AssertionError  Expected HTTP status class                                                    </span><span class="error">                     expected 5 to deeply equal 4                                                  </span><span class="">                     at assertion:0 in test-script                                                 </span><span class="">                     inside &quot;CREATE Coupon - run with fr17-create.json / Execute FR17 CREATE case&quot; </span><span class=""> </span></pre>
+</section>
+</body>
+</html>

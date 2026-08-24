@@ -1,0 +1,19 @@
+[
+  {
+    "id": "FR04-TC-020",
+    "technique": "Phone below boundary",
+    "input": "Đổi phone thành `012345678`",
+    "expected": "`4xx`; phone cũ không đổi",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "name": "Nguyen Van A",
+      "phone": "012345678",
+      "shipping_address": "123 Le Loi, Q1, TP.HCM"
+    },
+    "verifyProfile": true,
+    "expectChanged": false
+  }
+]

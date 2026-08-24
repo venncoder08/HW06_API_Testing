@@ -1,0 +1,50 @@
+[
+  {
+    "id": "FR09-TC-002",
+    "technique": "Positive fixed",
+    "input": "Apply `BIGBUY`, total `600000`, usage 0",
+    "expected": "`2xx`; discount `50000`; final `550000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "BIGBUY",
+      "total_amount": 600000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 50000,
+    "expectedFinal": 550000
+  },
+  {
+    "id": "FR09-TC-003",
+    "technique": "Positive max-use coupon",
+    "input": "Apply `VIP100`, total `500000`, usage 0",
+    "expected": "`2xx`; discount `100000`; final `400000`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "body": {
+      "code": "VIP100",
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    },
+    "expectedDiscount": 100000,
+    "expectedFinal": 400000
+  },
+  {
+    "id": "FR09-TC-010",
+    "technique": "Code missing",
+    "input": "Bỏ field `code`",
+    "expected": "`4xx`; không trả discount",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "body": {
+      "total_amount": 500000,
+      "user_id": "__USER_ID__"
+    }
+  }
+]

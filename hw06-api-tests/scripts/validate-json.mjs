@@ -13,6 +13,16 @@ const roots = [
 let count = 0;
 let scriptCount = 0;
 
+function jsonFiles(root) {
+  const files = [];
+  for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
+    const entryPath = path.join(root, entry.name);
+    if (entry.isDirectory()) files.push(...jsonFiles(entryPath));
+    else if (entry.name.endsWith(".json")) files.push(entryPath);
+  }
+  return files;
+}
+
 function validateScripts(node, fileName, trail = []) {
   for (const itemEvent of node.event || []) {
     const source = Array.isArray(itemEvent.script?.exec)
@@ -34,9 +44,9 @@ function validateScripts(node, fileName, trail = []) {
 }
 
 for (const root of roots) {
-  for (const name of fs.readdirSync(root)) {
-    if (!name.endsWith(".json")) continue;
-    const parsed = JSON.parse(fs.readFileSync(path.join(root, name), "utf8"));
+  for (const filePath of jsonFiles(root)) {
+    const name = path.relative(root, filePath);
+    const parsed = JSON.parse(fs.readFileSync(filePath, "utf8"));
     if (root === roots[0]) validateScripts(parsed, name);
     count += 1;
   }

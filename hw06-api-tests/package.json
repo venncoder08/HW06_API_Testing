@@ -5,15 +5,17 @@
   "description": "Postman/Newman draft suites for FR04, FR09 and FR17",
   "scripts": {
     "generate": "node scripts/generate-postman.mjs",
+    "generate:ci-data": "node scripts/generate-ci-data.mjs",
     "generate:test-cases": "node scripts/generate-test-cases.mjs",
     "review:json": "node scripts/validate-json.mjs",
+    "newman:ci": "node scripts/run-newman-ci.mjs",
     "newman:fr04:get": "newman run postman/collections/HW06-FR04.postman_collection.json -e postman/environments/local.postman_environment.json -d postman/data/fr04-get.json --folder \"GET Profile - run with fr04-get.json\" --reporters cli,htmlextra --reporter-htmlextra-export reports/newman/FR04-GET.html",
     "newman:fr04:put": "newman run postman/collections/HW06-FR04.postman_collection.json -e postman/environments/local.postman_environment.json -d postman/data/fr04-put.json --folder \"PUT Profile - run with fr04-put.json\" --reporters cli,htmlextra --reporter-htmlextra-export reports/newman/FR04-PUT.html",
     "newman:fr09": "newman run postman/collections/HW06-FR09.postman_collection.json -e postman/environments/local.postman_environment.json -d postman/data/fr09-apply.json --reporters cli,htmlextra --reporter-htmlextra-export reports/newman/FR09-APPLY.html",
     "newman:fr17:get": "newman run postman/collections/HW06-FR17.postman_collection.json -e postman/environments/local.postman_environment.json -d postman/data/fr17-get.json --folder \"GET Coupons - run with fr17-get.json\" --reporters cli,htmlextra --reporter-htmlextra-export reports/newman/FR17-GET.html",
     "newman:fr17:create": "newman run postman/collections/HW06-FR17.postman_collection.json -e postman/environments/local.postman_environment.json -d postman/data/fr17-create.json --folder \"CREATE Coupon - run with fr17-create.json\" --reporters cli,htmlextra --reporter-htmlextra-export reports/newman/FR17-CREATE.html",
     "newman:fr17:delete": "newman run postman/collections/HW06-FR17.postman_collection.json -e postman/environments/local.postman_environment.json -d postman/data/fr17-delete.json --folder \"DELETE Coupon - run with fr17-delete.json\" --reporters cli,htmlextra --reporter-htmlextra-export reports/newman/FR17-DELETE.html",
-    "newman:all": "npm run newman:fr04:get && npm run newman:fr04:put && npm run newman:fr09 && npm run newman:fr17:get && npm run newman:fr17:create && npm run newman:fr17:delete"
+    "newman:all": "node scripts/run-newman-all.mjs"
   },
   "devDependencies": {
     "newman": "^6.2.1",

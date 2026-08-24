@@ -1,0 +1,67 @@
+[
+  {
+    "id": "FR04-TC-001",
+    "technique": "Positive GET",
+    "input": "GET với `userToken`",
+    "expected": "`2xx`; JSON thuộc user seed; có dữ liệu `name,email,phone,shipping_address`",
+    "automationStatus": "ready",
+    "authMode": "user",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "expectedIdentity": "user",
+    "assertNoPassword": false,
+    "assertNoResetToken": false
+  },
+  {
+    "id": "FR04-TC-003",
+    "technique": "JWT missing",
+    "input": "GET không có Authorization",
+    "expected": "`4xx`; không trả profile",
+    "automationStatus": "ready",
+    "authMode": "missing",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "expectedIdentity": null,
+    "assertNoPassword": false,
+    "assertNoResetToken": false
+  },
+  {
+    "id": "FR04-TC-004",
+    "technique": "JWT empty",
+    "input": "GET với `Authorization: Bearer `",
+    "expected": "`4xx`; không trả profile",
+    "automationStatus": "ready",
+    "authMode": "empty",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "expectedIdentity": null,
+    "assertNoPassword": false,
+    "assertNoResetToken": false
+  },
+  {
+    "id": "FR04-TC-005",
+    "technique": "JWT malformed",
+    "input": "GET với `Bearer abc.def`",
+    "expected": "`4xx`; không trả profile hoặc stack trace",
+    "automationStatus": "ready",
+    "authMode": "malformed",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "expectedIdentity": null,
+    "assertNoPassword": false,
+    "assertNoResetToken": false
+  },
+  {
+    "id": "FR04-TC-006",
+    "technique": "JWT forged",
+    "input": "Sửa `id` trong payload của user token, giữ signature cũ",
+    "expected": "`4xx`; không trả profile của ID bị giả",
+    "automationStatus": "ready",
+    "authMode": "forged-user",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "expectedIdentity": null,
+    "assertNoPassword": false,
+    "assertNoResetToken": false
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "FR17-TC-001",
+    "technique": "Positive GET",
+    "input": "GET coupons bằng admin token",
+    "expected": "`2xx`; body là JSON array",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "assertCouponArray": true,
+    "assertRequiredCouponFields": false,
+    "assertNoSensitiveFields": false,
+    "expectEmptyArray": false
+  },
+  {
+    "id": "FR17-TC-002",
+    "technique": "GET auth missing",
+    "input": "GET coupons không token",
+    "expected": "`4xx`; không trả coupon list",
+    "automationStatus": "ready",
+    "authMode": "missing",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "assertCouponArray": false,
+    "assertRequiredCouponFields": false,
+    "assertNoSensitiveFields": false,
+    "expectEmptyArray": false
+  },
+  {
+    "id": "FR17-TC-004",
+    "technique": "GET malformed JWT",
+    "input": "GET coupons bằng malformed token",
+    "expected": "`4xx`; không trả coupon list/stack trace",
+    "automationStatus": "ready",
+    "authMode": "malformed",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "assertCouponArray": false,
+    "assertRequiredCouponFields": false,
+    "assertNoSensitiveFields": false,
+    "expectEmptyArray": false
+  },
+  {
+    "id": "FR17-TC-005",
+    "technique": "GET forged JWT",
+    "input": "Sửa role user thành admin trong payload, giữ signature cũ",
+    "expected": "`4xx`; không trả coupon list",
+    "automationStatus": "ready",
+    "authMode": "forged-admin",
+    "expectedStatusClass": 4,
+    "notes": "",
+    "assertCouponArray": false,
+    "assertRequiredCouponFields": false,
+    "assertNoSensitiveFields": false,
+    "expectEmptyArray": false
+  },
+  {
+    "id": "FR17-TC-007",
+    "technique": "GET required fields",
+    "input": "GET seed coupons bằng admin",
+    "expected": "Mỗi coupon có `code,type,discount_value,min_order_amount,expired_at,max_uses_per_user`",
+    "automationStatus": "ready",
+    "authMode": "admin",
+    "expectedStatusClass": 2,
+    "notes": "",
+    "assertCouponArray": true,
+    "assertRequiredCouponFields": true,
+    "assertNoSensitiveFields": false,
+    "expectEmptyArray": false
+  }
+]

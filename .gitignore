@@ -1,2 +1,12 @@
-eshop-sut
 guide.md
+**/node_modules/
+eshop-sut/*
+!eshop-sut/backend/
+eshop-sut/backend/*
+!eshop-sut/backend/server.js
+!eshop-sut/backend/database.js
+!eshop-sut/backend/package.json
+!eshop-sut/backend/package-lock.json
+hw06-api-tests/reports/ci/
+sut.log
+sut.pid

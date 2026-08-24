@@ -1,0 +1,79 @@
+name: API Tests - Newman
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  newman-api-tests:
+    name: Newman regression suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            eshop-sut/backend/package-lock.json
+            hw06-api-tests/package-lock.json
+
+      - name: Install SUT dependencies
+        run: npm ci --prefix eshop-sut/backend
+
+      - name: Install Newman dependencies
+        run: npm ci --prefix hw06-api-tests
+
+      - name: Validate Postman artifacts
+        run: npm run review:json --prefix hw06-api-tests
+
+      - name: Reset CI database and start SUT
+        shell: bash
+        run: |
+          rm -f eshop-sut/backend/database.sqlite
+          node eshop-sut/backend/server.js > sut.log 2>&1 &
+          echo $! > sut.pid
+
+      - name: Wait for SUT
+        shell: bash
+        run: |
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:3000/api/products > /dev/null; then
+              echo "SUT is ready"
+              exit 0
+            fi
+            sleep 1
+          done
+          cat sut.log
+          exit 1
+
+      - name: Run Newman CI regression suite
+        run: npm run newman:ci --prefix hw06-api-tests
+
+      - name: Upload Newman reports and SUT log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-api-test-reports
+          path: |
+            hw06-api-tests/reports/ci/
+            sut.log
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Stop SUT
+        if: always()
+        shell: bash
+        run: |
+          if test -f sut.pid; then
+            kill "$(cat sut.pid)" 2>/dev/null || true
+          fi

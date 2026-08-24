@@ -2,6 +2,18 @@
 
 This directory contains generated artifacts for FR04, FR09 and FR17.
 
+## GitHub Actions regression suite
+
+The workflow `.github/workflows/api-tests.yml` starts a clean SUT on an Ubuntu runner and executes a deterministic Newman subset for FR04, FR09 and FR17.
+
+```powershell
+npm.cmd run newman:ci
+```
+
+CI data is stored under `postman/data/ci/`. The workflow publishes JUnit XML, HTML reports, `RUN-SUMMARY.txt` and `sut.log` as the `newman-api-test-reports` artifact even when an assertion fails.
+
+The CI subset is intentionally separate from `newman:all`: the full suite retains known SUT failures for defect reporting, while the blocking CI regression subset contains reviewed cases with deterministic fixtures.
+
 ## Student header
 
 The local environment now contains:
@@ -70,7 +82,7 @@ Or run all six sequentially:
 npm.cmd run newman:all
 ```
 
-`newman:all` stops at the first suite whose assertions fail. For investigation, running each suite separately is easier because all reports are still generated independently.
+`newman:all` continues through all six suites even if one suite fails. It returns a failing exit code only after all suites finish and writes `reports/newman/RUN-SUMMARY.txt`.
 
 ### 5. Open the HTML reports
 

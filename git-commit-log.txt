@@ -1,0 +1,27 @@
+HW06-AI API Testing - Git Commit Log
+Student ID: 23127522
+Repository: https://github.com/venncoder08/HW06_API_Testing
+Generated from: git log --reverse --date=iso-strict
+
+Commit SHA | Date/time | Author | Subject
+--- | --- | --- | ---
+aa2e87def914d8e6364d8a4e87895762a5164a56 | 2026-08-22T21:33:23+07:00 | Khanh Vinh | init repo
+9303b287ff7ad2385104e63044106982541ff7ef | 2026-08-23T00:45:58+07:00 | Khanh Vinh | docs: create 3 test-plans according to 3 features
+4a70a1b08afefa39111507637dd27f9c02f36ac5 | 2026-08-24T00:13:33+07:00 | Khanh Vinh | feat: finish newman scripts before running
+9bdb69dfcb14fadcb7a6f53ae60543fe6c38bbf1 | 2026-08-24T20:25:39+07:00 | Khanh Vinh | ci: add passing Newman API test pipeline
+be42531a84321e852d48cd538cfdb18764b1e1a6 | 2026-08-24T20:27:59+07:00 | Khanh Vinh | fix(ci): include SUT backend and lockfile
+e4c5f9160aa821ccb8588f8a6c867a3bb78a5586 | 2026-08-24T20:30:57+07:00 | Khanh Vinh | ci-green-#3: clone pinned SUT before npm ci
+b3a3c6c3030cc1caf54caee75d16951b2f63d8e3 | 2026-08-24T22:05:42+07:00 | Khanh Vinh | ci-red-#1: demonstrate one failing API case
+e4b5f3a378447e3e7ccb501823e8f6d95859120e | 2026-08-24T22:10:50+07:00 | Khanh Vinh | docs(ci): add green and red pipeline evidence
+7c5470e36109f3f555217c44ec1720c530889eed | 2026-08-24T22:18:00+07:00 | Khanh Vinh | docs(ci): add green and red workflow screenshots
+7918f63f277d3836cfe440bac3532214fb4bd9e9 | 2026-08-24T22:43:24+07:00 | Khanh Vinh | docs(issues): add Newman failure evidence
+0b9693aec0a2d04ff0dae300abf6310f9b5770d0 | 2026-08-24T22:46:58+07:00 | Khanh Vinh | docs(issues): add FR04 authentication evidence
+d6a113838840f0f22ed3817fb8654b8aeb09b6f6 | 2026-08-25T00:28:33+07:00 | Khanh Vinh | test(fr04): add audited workbook and Newman results
+7b07784283573d71c2f7247f76870ca252bced93 | 2026-08-25T00:28:33+07:00 | Khanh Vinh | test(fr09): add audited workbook and fixture results
+35f8f883e53dfcd946fd5fb9a19acffeb75ceca4 | 2026-08-25T00:28:33+07:00 | Khanh Vinh | test(fr17): add audited workbook and Newman results
+058e9cea239d3c213417b1fa95f7f35998b4623d | 2026-08-25T00:28:33+07:00 | Khanh Vinh | test(api): finalize audit metadata and execution tooling
+1160aa0eabd7569407a223560ef053012d303ef6 | 2026-08-25T00:28:34+07:00 | Khanh Vinh | docs(issues): replace report captures with Newman console evidence
+d4453399b1f966a6d912e28d6908eada636d5086 | 2026-08-25T00:28:34+07:00 | Khanh Vinh | docs(ai): add audit log critique and generator design
+bdde407ded876de2ebf80be5f1a209bbfaa67777 | 2026-08-25T00:28:34+07:00 | Khanh Vinh | docs(report): finalize submission report and self-assessment
+
+Note: the commit that first adds this generated file cannot include its own SHA in the file content.

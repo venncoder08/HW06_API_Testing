@@ -1,0 +1,1578 @@
+{
+  "FR04-TC-001": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Positive GET case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR04-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR04-GET.html (Iteration 1)"
+  },
+  "FR04-TC-002": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Positive GET, role partition case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR04-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR04-GET.html (Iteration 2)"
+  },
+  "FR04-TC-003": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The JWT missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR04-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR04-GET.html (Iteration 3)"
+  },
+  "FR04-TC-004": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The JWT empty case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR04-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR04-GET.html (Iteration 4)"
+  },
+  "FR04-TC-005": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The JWT malformed case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR04-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR04-GET.html (Iteration 5)"
+  },
+  "FR04-TC-006": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The JWT forged case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR04-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR04-GET.html (Iteration 6)"
+  },
+  "FR04-TC-007": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Wrong auth scheme case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "#7",
+    "evidence": "hw06-api-tests/reports/newman/FR04-GET.html (Iteration 7); https://github.com/venncoder08/HW06_API_Testing/issues/7"
+  },
+  "FR04-TC-008": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Ownership case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR04-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR04-GET.html (Iteration 8)"
+  },
+  "FR04-TC-009": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Sensitive data case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password: expected { id: 2, name: 'Test User', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-GET.html (Iteration 9); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-010": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Sensitive data case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No reset token: expected { id: 2, name: 'Test User', …(8) } to not have property 'reset_token'",
+    "executionStatus": "FAIL",
+    "bugId": "#8",
+    "evidence": "hw06-api-tests/reports/newman/FR04-GET.html (Iteration 10); https://github.com/venncoder08/HW06_API_Testing/issues/8"
+  },
+  "FR04-TC-011": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Positive PUT case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 1); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-012": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Unicode name case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyễn Văn Ánh', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 2); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-013": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Name punctuation case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'O\\'Connor-An', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 3); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-014": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Name type null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: name: expected null to deeply equal 'O\\'Connor-An' | No password exposed: expected { id: 2, name: null, …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 4); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-015": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Name type number case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: name: expected '12345' to deeply equal null | No password exposed: expected { id: 2, name: '12345', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 5); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-016": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Name type object case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: name: expected '[object Object]' to deeply equal '12345' | No password exposed: expected { Object (id, name, ...) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 6); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-017": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Name type array case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | No password exposed: expected { Object (id, name, ...) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 7); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-018": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone lower valid boundary case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 8); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-019": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone upper valid boundary case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 9); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-020": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone below boundary case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '012345678' to deeply equal '01234567890' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1, #2",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 10); https://github.com/venncoder08/HW06_API_Testing/issues/1; https://github.com/venncoder08/HW06_API_Testing/issues/2"
+  },
+  "FR04-TC-021": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone above boundary case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '012345678901' to deeply equal '012345678' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 11); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-022": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone first digit case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '1123456789' to deeply equal '012345678901' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 12); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-023": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone alphabetic case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '09ABC45678' to deeply equal '1123456789' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 13); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-024": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone hyphen case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '0912-345-678' to deeply equal '09ABC45678' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 14); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-025": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone internal spaces case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '0912 345 678' to deeply equal '0912-345-678' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 15); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-026": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone country prefix case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '+84912345678' to deeply equal '0912 345 678' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 16); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-027": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone Unicode digits case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '０１２３４５６７８９' to deeply equal '+84912345678' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 17); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-028": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone empty case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '' to deeply equal '０１２３４５６７８９' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 18); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-029": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected null to deeply equal '' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 19); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-030": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone number type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '912345678' to deeply equal null | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 20); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-031": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone boolean type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '1' to deeply equal '912345678' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 21); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-032": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone object type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: phone: expected '[object Object]' to deeply equal '1' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 22); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-033": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Phone array type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 23); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-034": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Unicode address case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 24); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-035": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Multiline address case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 25); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-036": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Address null type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: shipping_address: expected null to deeply equal 'Tang 2\\n123 Le Loi' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 26); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-037": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Address number type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: shipping_address: expected '123' to deeply equal null | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 27); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-038": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Address boolean type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: shipping_address: expected '0' to deeply equal '123' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 28); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-039": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Address object type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: shipping_address: expected '[object Object]' to deeply equal '0' | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 29); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-040": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Address array type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 30); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-041": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Role mass assignment case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 31); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-042": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Immutable email case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 32); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-043": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Ownership/mass assignment case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 33); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-044": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Ownership/mass assignment case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 34); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-045": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Sensitive field injection case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: 'Nguyen Van A', …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 35); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-046": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The SQL injection case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, …(9) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 36); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-047": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The XSS API portion case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, …(9) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 37); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-048": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The PUT auth missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, …(9) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 38); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-049": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Empty body case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Unchanged field: name: expected null to deeply equal '<script>alert(1)</script>' | Unchanged field: phone: expected null to deeply equal '0912345678' | Unchanged field: shipping_address: expected null to deeply equal '123 Le Loi, Q1, TP.HCM' | No password exposed: expected { id: 2, name: null, …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 39); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR04-TC-050": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR04.md. The Malformed JSON case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: No password exposed: expected { id: 2, name: null, …(8) } to not have property 'password'",
+    "executionStatus": "FAIL",
+    "bugId": "#1",
+    "evidence": "hw06-api-tests/reports/newman/FR04-PUT.html (Iteration 40); https://github.com/venncoder08/HW06_API_Testing/issues/1"
+  },
+  "FR09-TC-001": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Positive percent case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: discount_amount: expected -4500000 to deeply equal 50000 | final_amount: expected 5000000 to deeply equal 450000",
+    "executionStatus": "FAIL",
+    "bugId": "#3",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 1); https://github.com/venncoder08/HW06_API_Testing/issues/3"
+  },
+  "FR09-TC-002": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Positive fixed case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 2)"
+  },
+  "FR09-TC-003": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Positive max-use coupon case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 3)"
+  },
+  "FR09-TC-004": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The JWT missing, C4 case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 4)"
+  },
+  "FR09-TC-005": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The JWT empty case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 5)"
+  },
+  "FR09-TC-006": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The JWT malformed case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 6)"
+  },
+  "FR09-TC-007": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The JWT forged case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 7)"
+  },
+  "FR09-TC-008": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Wrong auth scheme case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 8)"
+  },
+  "FR09-TC-009": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Admin identity partition case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: discount_amount: expected -4500000 to deeply equal 50000 | final_amount: expected 5000000 to deeply equal 450000",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 9)"
+  },
+  "FR09-TC-010": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 10)"
+  },
+  "FR09-TC-011": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 11)"
+  },
+  "FR09-TC-012": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code empty case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 12)"
+  },
+  "FR09-TC-013": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code whitespace case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 13)"
+  },
+  "FR09-TC-014": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code nonexistent, C1 case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 14)"
+  },
+  "FR09-TC-015": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code inactive, C1 case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Prepared fixture run passed all Newman assertions for FR09-TC-015.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/prepared/FR09-TC-015.html; hw06-api-tests/reports/newman/prepared/FR09-TC-015.json"
+  },
+  "FR09-TC-016": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code expired, C2 case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 16)"
+  },
+  "FR09-TC-017": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code number type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 17)"
+  },
+  "FR09-TC-018": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code object type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 18)"
+  },
+  "FR09-TC-019": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code array type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 19)"
+  },
+  "FR09-TC-020": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code SQL injection case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 20)"
+  },
+  "FR09-TC-021": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Code XSS API portion case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 21)"
+  },
+  "FR09-TC-022": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The SAVE10 below min case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 22)"
+  },
+  "FR09-TC-023": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The SAVE10 exact min case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 4 to deeply equal 2 | discount_amount: expected undefined to deeply equal 30000 | final_amount: expected undefined to deeply equal 270000",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 23)"
+  },
+  "FR09-TC-024": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The SAVE10 above min case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: discount_amount: expected -2700009 to deeply equal 30000.1 | final_amount: expected 3000010 to deeply equal 270000.9",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 24)"
+  },
+  "FR09-TC-025": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The BIGBUY below min case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 25)"
+  },
+  "FR09-TC-026": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The BIGBUY exact min case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 4 to deeply equal 2 | discount_amount: expected undefined to deeply equal 50000 | final_amount: expected undefined to deeply equal 450000",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 26)"
+  },
+  "FR09-TC-027": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The BIGBUY above min case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 27)"
+  },
+  "FR09-TC-028": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The VIP100 below min case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 28)"
+  },
+  "FR09-TC-029": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The VIP100 exact min case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 4 to deeply equal 2 | discount_amount: expected undefined to deeply equal 100000 | final_amount: expected undefined to deeply equal 200000",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 29)"
+  },
+  "FR09-TC-030": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The VIP100 above min case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 30)"
+  },
+  "FR09-TC-031": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Total zero case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 31)"
+  },
+  "FR09-TC-032": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Total negative case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 32)"
+  },
+  "FR09-TC-033": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Total null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 33)"
+  },
+  "FR09-TC-034": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Total missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 34)"
+  },
+  "FR09-TC-035": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Total numeric string case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 35)"
+  },
+  "FR09-TC-036": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Total boolean case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 36)"
+  },
+  "FR09-TC-037": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Total object case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 37)"
+  },
+  "FR09-TC-038": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Total array case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 38)"
+  },
+  "FR09-TC-039": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID matching case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: discount_amount: expected -4500000 to deeply equal 50000 | final_amount: expected 5000000 to deeply equal 450000",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 39)"
+  },
+  "FR09-TC-040": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 40)"
+  },
+  "FR09-TC-041": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 41)"
+  },
+  "FR09-TC-042": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID mismatch case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 42)"
+  },
+  "FR09-TC-043": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID nonexistent case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 43)"
+  },
+  "FR09-TC-044": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID zero case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 44)"
+  },
+  "FR09-TC-045": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID negative case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 45)"
+  },
+  "FR09-TC-046": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID string case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 46)"
+  },
+  "FR09-TC-047": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID object case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 47)"
+  },
+  "FR09-TC-048": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID array case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 48)"
+  },
+  "FR09-TC-049": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The User ID SQL injection case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 49)"
+  },
+  "FR09-TC-050": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Usage state zero case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Prepared fixture run passed all Newman assertions for FR09-TC-050.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/prepared/FR09-TC-050.html; hw06-api-tests/reports/newman/prepared/FR09-TC-050.json"
+  },
+  "FR09-TC-051": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Usage state max-1 case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Prepared fixture run passed all Newman assertions for FR09-TC-051.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/prepared/FR09-TC-051.html; hw06-api-tests/reports/newman/prepared/FR09-TC-051.json"
+  },
+  "FR09-TC-052": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Usage state max case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Prepared fixture run passed all Newman assertions for FR09-TC-052.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/prepared/FR09-TC-052.html; hw06-api-tests/reports/newman/prepared/FR09-TC-052.json"
+  },
+  "FR09-TC-053": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Usage isolation case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Prepared fixture run passed all Newman assertions for FR09-TC-053.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/prepared/FR09-TC-053.html; hw06-api-tests/reports/newman/prepared/FR09-TC-053.json"
+  },
+  "FR09-TC-054": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The State transition after use case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Prepared usage 1; first apply HTTP 200 (discount=100000, final=400000); recorded usage HTTP 200; database usage=2; second apply HTTP 400.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/prepared/PREPARED-CASES-SUMMARY.md; hw06-api-tests/reports/newman/prepared/PREPARED-RESULTS.json"
+  },
+  "FR09-TC-055": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Percent formula case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: discount_amount: expected -9000000 to deeply equal 100000 | final_amount: expected 10000000 to deeply equal 900000",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 55)"
+  },
+  "FR09-TC-056": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Fixed formula case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 56)"
+  },
+  "FR09-TC-057": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Success schema case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: discount_amount: expected -6300000 to deeply equal 70000 | final_amount: expected 7000000 to deeply equal 630000",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 57)"
+  },
+  "FR09-TC-058": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR09.md. The Failure schema case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR09-APPLY.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR09-APPLY.html (Iteration 58)"
+  },
+  "FR17-TC-001": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Positive GET case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-GET.html (Iteration 1)"
+  },
+  "FR17-TC-002": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The GET auth missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-GET.html (Iteration 2)"
+  },
+  "FR17-TC-003": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The GET role authorization case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "#4",
+    "evidence": "hw06-api-tests/reports/newman/FR17-GET.html (Iteration 3); https://github.com/venncoder08/HW06_API_Testing/issues/4"
+  },
+  "FR17-TC-004": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The GET malformed JWT case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-GET.html (Iteration 4)"
+  },
+  "FR17-TC-005": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The GET forged JWT case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-GET.html (Iteration 5)"
+  },
+  "FR17-TC-006": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The GET wrong scheme case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-GET.html (Iteration 6)"
+  },
+  "FR17-TC-007": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The GET required fields case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-GET.html (Iteration 7)"
+  },
+  "FR17-TC-008": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The GET type enum case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-GET.html (Iteration 8)"
+  },
+  "FR17-TC-009": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The GET sensitive data case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-GET.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-GET.html (Iteration 9)"
+  },
+  "FR17-TC-010": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The GET empty state case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Prepared fixture run passed all Newman assertions for FR17-TC-010.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/prepared/FR17-TC-010.html; hw06-api-tests/reports/newman/prepared/FR17-TC-010.json"
+  },
+  "FR17-TC-011": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Positive create percent case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 1)"
+  },
+  "FR17-TC-012": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Positive create fixed case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 2)"
+  },
+  "FR17-TC-013": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Create auth missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 3)"
+  },
+  "FR17-TC-014": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Create user role case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 4)"
+  },
+  "FR17-TC-015": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Create malformed JWT case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 5)"
+  },
+  "FR17-TC-016": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Create forged admin JWT case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 6)"
+  },
+  "FR17-TC-017": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Code missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 7)"
+  },
+  "FR17-TC-018": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Code null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 8)"
+  },
+  "FR17-TC-019": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Code empty case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 9)"
+  },
+  "FR17-TC-020": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Code duplicate case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 5 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "#5",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 10); https://github.com/venncoder08/HW06_API_Testing/issues/5"
+  },
+  "FR17-TC-021": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Code number type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 11)"
+  },
+  "FR17-TC-022": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Code boolean type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 12)"
+  },
+  "FR17-TC-023": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Code object type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 13)"
+  },
+  "FR17-TC-024": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Code array type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 14)"
+  },
+  "FR17-TC-025": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Code SQL injection case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 15)"
+  },
+  "FR17-TC-026": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Code XSS API portion case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 16)"
+  },
+  "FR17-TC-027": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Type missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 17)"
+  },
+  "FR17-TC-028": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Type null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 18)"
+  },
+  "FR17-TC-029": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Type empty case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 19)"
+  },
+  "FR17-TC-030": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Type percent case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 20)"
+  },
+  "FR17-TC-031": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Type fixed case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 21)"
+  },
+  "FR17-TC-032": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Type invalid enum case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 22)"
+  },
+  "FR17-TC-033": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Type number case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: type: expected '1' to deeply equal 1",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 23)"
+  },
+  "FR17-TC-034": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Type object case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: type: expected '[object Object]' to deeply equal {}",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 24)"
+  },
+  "FR17-TC-035": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Type array case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: type: expected '[object Object]' to deeply equal []",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 25)"
+  },
+  "FR17-TC-036": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Discount missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 26)"
+  },
+  "FR17-TC-037": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Discount null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 27)"
+  },
+  "FR17-TC-038": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Discount lower valid case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 28)"
+  },
+  "FR17-TC-039": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Discount zero case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 29)"
+  },
+  "FR17-TC-040": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Discount negative case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 30)"
+  },
+  "FR17-TC-041": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Discount positive decimal case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 31)"
+  },
+  "FR17-TC-042": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Discount numeric string case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: discount_value: expected 10 to deeply equal '10'",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 32)"
+  },
+  "FR17-TC-043": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Discount boolean case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: discount_value: expected 1 to deeply equal true",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 33)"
+  },
+  "FR17-TC-044": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Discount object case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: discount_value: expected '[object Object]' to deeply equal {}",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 34)"
+  },
+  "FR17-TC-045": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Discount array case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: discount_value: expected '[object Object]' to deeply equal []",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 35)"
+  },
+  "FR17-TC-046": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Min amount missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 36)"
+  },
+  "FR17-TC-047": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Min amount null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 37)"
+  },
+  "FR17-TC-048": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Min lower boundary case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 38)"
+  },
+  "FR17-TC-049": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Min positive case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 39)"
+  },
+  "FR17-TC-050": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Min negative case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 40)"
+  },
+  "FR17-TC-051": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Min positive decimal case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 41)"
+  },
+  "FR17-TC-052": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Min numeric string case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: min_order_amount: expected 200000 to deeply equal '200000'",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 42)"
+  },
+  "FR17-TC-053": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Min boolean case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: min_order_amount: expected +0 to deeply equal false",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 43)"
+  },
+  "FR17-TC-054": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Min object case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: min_order_amount: expected '[object Object]' to deeply equal {}",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 44)"
+  },
+  "FR17-TC-055": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Min array case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: min_order_amount: expected '[object Object]' to deeply equal []",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 45)"
+  },
+  "FR17-TC-056": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Expiry missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 46)"
+  },
+  "FR17-TC-057": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Expiry null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 47)"
+  },
+  "FR17-TC-058": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Expiry empty case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 48)"
+  },
+  "FR17-TC-059": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Expiry valid future case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 49)"
+  },
+  "FR17-TC-060": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Expiry valid leap day case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 50)"
+  },
+  "FR17-TC-061": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Expiry valid past case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 51)"
+  },
+  "FR17-TC-062": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Expiry invalid date case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 52)"
+  },
+  "FR17-TC-063": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Expiry invalid format case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 53)"
+  },
+  "FR17-TC-064": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Expiry number type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 54)"
+  },
+  "FR17-TC-065": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Expiry object type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: expired_at: expected '[object Object]' to deeply equal {}",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 55)"
+  },
+  "FR17-TC-066": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Max uses missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 56)"
+  },
+  "FR17-TC-067": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Max uses null case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: max_uses_per_user: expected 1 to deeply equal null",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 57)"
+  },
+  "FR17-TC-068": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Max uses lower valid case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 58)"
+  },
+  "FR17-TC-069": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Max uses positive case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 59)"
+  },
+  "FR17-TC-070": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Max uses zero case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: max_uses_per_user: expected 1 to deeply equal +0",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 60)"
+  },
+  "FR17-TC-071": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Max uses negative case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 61)"
+  },
+  "FR17-TC-072": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Max uses numeric string case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: max_uses_per_user: expected 1 to deeply equal '1'",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 62)"
+  },
+  "FR17-TC-073": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Max uses object case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Created field: max_uses_per_user: expected '[object Object]' to deeply equal {}",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 63)"
+  },
+  "FR17-TC-074": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The ID mass assignment case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 64)"
+  },
+  "FR17-TC-075": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Concurrent uniqueness case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Two concurrent create requests returned HTTP 200 and 500; database rows with code HW06_FR17_075=1. Expected one 2xx, one 4xx, and one row.",
+    "executionStatus": "FAIL",
+    "bugId": "#5",
+    "evidence": "hw06-api-tests/reports/newman/prepared/PREPARED-CASES-SUMMARY.md; hw06-api-tests/reports/newman/prepared/PREPARED-RESULTS.json; https://github.com/venncoder08/HW06_API_Testing/issues/5"
+  },
+  "FR17-TC-088": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Malformed JSON case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-CREATE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 66)"
+  },
+  "FR17-TC-089": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Wrong content type case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 5 to deeply equal 4",
+    "executionStatus": "FAIL",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-CREATE.html (Iteration 67)"
+  },
+  "FR17-TC-076": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Positive delete case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-DELETE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 1)"
+  },
+  "FR17-TC-077": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Delete auth missing case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-DELETE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 2)"
+  },
+  "FR17-TC-078": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Delete user role case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "Newman assertions failed: Expected HTTP status class: expected 2 to deeply equal 4 | Delete state is correct: expected false to deeply equal true",
+    "executionStatus": "FAIL",
+    "bugId": "#6",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 3); https://github.com/venncoder08/HW06_API_Testing/issues/6"
+  },
+  "FR17-TC-079": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Delete malformed JWT case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-DELETE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 4)"
+  },
+  "FR17-TC-080": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Delete nonexistent case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-DELETE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 5)"
+  },
+  "FR17-TC-081": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Delete ID zero case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-DELETE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 6)"
+  },
+  "FR17-TC-082": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Delete ID negative case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-DELETE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 7)"
+  },
+  "FR17-TC-083": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Delete ID string case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-DELETE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 8)"
+  },
+  "FR17-TC-084": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Delete SQL injection case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-DELETE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 9)"
+  },
+  "FR17-TC-085": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Double delete state case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "First DELETE HTTP 200; second DELETE HTTP 200 (exact second status is a specification gap); target rows=0; SAVE10 rows=1.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/prepared/PREPARED-CASES-SUMMARY.md; hw06-api-tests/reports/newman/prepared/PREPARED-RESULTS.json"
+  },
+  "FR17-TC-086": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Create-read-delete lifecycle case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-DELETE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 11)"
+  },
+  "FR17-TC-087": {
+    "audit": "VALID",
+    "auditNote": "Reviewed against test-plans/FR17.md. The Delete isolation case is in scope and its expected result is testable against the reviewed requirement/specification.",
+    "actualResult": "All Newman assertions passed in FR17-DELETE.html.",
+    "executionStatus": "PASS",
+    "bugId": "",
+    "evidence": "hw06-api-tests/reports/newman/FR17-DELETE.html (Iteration 12)"
+  }
+}

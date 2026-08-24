@@ -4,3 +4,5 @@ eshop-sut/
 hw06-api-tests/reports/ci/
 sut.log
 sut.pid
+test-cases/.prepared/
+test-cases/~$*.xlsx

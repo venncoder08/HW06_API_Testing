@@ -110,13 +110,13 @@ Start-Process .\reports\newman\FR04-GET.html
 - Capture Postman Console output showing `X-Student-Id: 23127522`.
 - Do not count `manual-review` cases as passed; execute and document them separately.
 
-## Review status
+## Execution status
 
-- The collections have **not** been run with Postman or Newman.
-- No HTTP request was sent while generating these files.
-- JSON syntax may be checked with `npm.cmd run review:json`; this does not call the SUT.
-- Replace `REPLACE_WITH_STUDENT_ID` in the local environment before any future run.
-- Import the three collection JSON files and the environment JSON into Postman UI for review.
+- All 197 testcase IDs were executed through the six main Newman suites or controlled prepared runs.
+- Final result: 80 PASS, 117 FAIL, 0 BLOCKED.
+- `studentId` is configured as `23127522` in the committed local environment.
+- The collection pre-request script logs and attaches `X-Student-Id` on every request.
+- JSON and Postman scripts can be revalidated with `npm.cmd run review:json` without calling the SUT.
 
 ## Files
 
@@ -157,14 +157,10 @@ Each data row includes:
 - The collections use broad `2xx/4xx` assertions where the source specification does not define exact status codes.
 - XSS checks cover only the API portion. DOM execution needs a separate browser/UI test.
 
-## Future commands - do not run before review
+## Reproduction notes
 
-The `package.json` contains Newman scripts for each folder/data file. Dependencies have not been installed and no Newman command has been executed.
-
-Before a future run:
-
-1. Review collection scripts and every data row.
-2. Set the real student ID.
-3. Decide how each fixture-required iteration resets/prepares the database.
-4. Audit each generated case as VALID, INVALID or INCOMPLETE.
-5. Only then install dependencies and run the selected folder.
+1. Start from the default EShop SQLite seed.
+2. Run `npm.cmd run newman:all` for the six diagnostic suites.
+3. Run `node scripts/run-prepared-cases.mjs` for fixture-dependent cases.
+4. Preserve the generated HTML reports and restore the default database seed.
+5. Do not reinterpret known assertion failures as automation failures without reviewing the response and fixture state.

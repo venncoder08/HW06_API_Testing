@@ -1,0 +1,11 @@
+HW06 Newman suite summary
+Generated: 2026-08-23T17:49:25.907Z
+
+newman:fr04:get: FAIL (exit 1)
+newman:fr04:put: FAIL (exit 1)
+newman:fr09: FAIL (exit 1)
+newman:fr17:get: FAIL (exit 1)
+newman:fr17:create: FAIL (exit 1)
+newman:fr17:delete: FAIL (exit 1)
+
+See the matching HTML files in this directory for request and assertion details.

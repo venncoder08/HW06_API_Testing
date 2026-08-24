@@ -6,21 +6,12 @@ const projectDir = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const workspaceDir = path.dirname(projectDir);
 const planDir = path.join(workspaceDir, "test-plans");
 const outputDir = path.join(workspaceDir, "test-cases");
-const dataDir = path.join(projectDir, "postman", "data");
+const auditOverridePath = path.join(outputDir, "audit-overrides.json");
 
-const dataFiles = [
-  "fr04-get.json",
-  "fr04-put.json",
-  "fr09-apply.json",
-  "fr17-get.json",
-  "fr17-create.json",
-  "fr17-delete.json",
-];
-
-const automationById = new Map();
-for (const fileName of dataFiles) {
-  const rows = JSON.parse(fs.readFileSync(path.join(dataDir, fileName), "utf8"));
-  for (const row of rows) automationById.set(row.id, row.automationStatus);
+const auditById = new Map();
+if (fs.existsSync(auditOverridePath)) {
+  const overrides = JSON.parse(fs.readFileSync(auditOverridePath, "utf8"));
+  for (const [id, decision] of Object.entries(overrides)) auditById.set(id, decision);
 }
 
 function classify(technique, input) {
@@ -69,14 +60,16 @@ function writeSuite(fr) {
     "",
     "Giá trị mặc định `PENDING HUMAN AUDIT` không phải kết luận. Sau khi đọc từng case, sinh viên thay bằng `VALID`, `INVALID` hoặc `INCOMPLETE` và ghi lý do trong `Note`.",
     "",
-    "| ID | Type | Kỹ thuật / Ref | Input hoặc hành động | Expected result | Audit | Note | Automation | Source |",
-    "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    "| ID | Type | Kỹ thuật / Ref | Input hoặc hành động | Expected result | Audit | Note |",
+    "| --- | --- | --- | --- | --- | --- | --- |",
   ];
 
   for (const testCase of cases) {
-    const automation = automationById.get(testCase.id) || "unmapped";
+    const decision = auditById.get(testCase.id) || {};
+    const audit = decision.audit || "PENDING HUMAN AUDIT";
+    const note = decision.auditNote || decision.note || "";
     lines.push(
-      `| ${testCase.id} | ${escapeCell(classify(testCase.technique, testCase.input))} | ${escapeCell(testCase.technique)} | ${escapeCell(testCase.input)} | ${escapeCell(testCase.expected)} | PENDING HUMAN AUDIT |  | ${automation} | AI-generated |`,
+      `| ${testCase.id} | ${escapeCell(classify(testCase.technique, testCase.input))} | ${escapeCell(testCase.technique)} | ${escapeCell(testCase.input)} | ${escapeCell(testCase.expected)} | ${escapeCell(audit)} | ${escapeCell(note)} |`,
     );
   }
 

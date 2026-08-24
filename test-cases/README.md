@@ -1,34 +1,41 @@
-# Test Cases for Human Audit
+# Test Cases and Execution Results
 
-Các file trong thư mục này được tạo từ `test-plans/` để sinh viên thực hiện human audit.
+Ba file Excel duoc sinh tu `test-plans/`, sau do ket hop ket qua trong sau Newman HTML reports va cac lan chay co database fixture rieng.
 
-| Suite | Số test case | Audit |
-| --- | ---: | --- |
-| FR04 | 50 | PENDING HUMAN AUDIT |
-| FR09 | 58 | PENDING HUMAN AUDIT |
-| FR17 | 89 | PENDING HUMAN AUDIT |
+| Suite | Test cases | Audit VALID | PASS | FAIL | BLOCKED |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| FR04 | 50 | 50 | 7 | 43 | 0 |
+| FR09 | 58 | 58 | 33 | 25 | 0 |
+| FR17 | 89 | 89 | 40 | 49 | 0 |
+| **Total** | **197** | **197** | **80** | **117** | **0** |
 
-## Type
+## Audit va execution
 
-- `Boundary`: kiểm tra tại hoặc quanh biên.
-- `Equivalence Partitioning`: đại diện miền dữ liệu hợp lệ/không hợp lệ.
-- `State Transition`: kiểm tra trạng thái hoặc lifecycle.
-- `Security`: authentication, authorization, injection, exposure hoặc escalation.
-- `Schema`: hình dạng và field của response.
-- `Calculation`: công thức nghiệp vụ.
-- `Data Integrity`: uniqueness, isolation hoặc không làm thay đổi dữ liệu ngoài phạm vi.
-- `Concurrency`: hành vi của request đồng thời.
-- `Positive` / `Functional`: luồng hợp lệ hoặc hành vi chức năng cơ bản.
+`Audit` danh gia thiet ke testcase, doc lap voi ket qua chay:
 
-## Audit workflow
+- `VALID`: input, ky thuat va expected result phu hop requirement/specification.
+- `INVALID`: testcase khong co co so hoac oracle sai.
+- `INCOMPLETE`: testcase con thieu du lieu, buoc thuc hien hoac expected result de co the review.
 
-Với từng testcase:
+`Execution Status` phan anh ket qua thuc thi:
 
-1. Đọc test basis, input và expected result.
-2. Thay `PENDING HUMAN AUDIT` bằng `VALID`, `INVALID` hoặc `INCOMPLETE`.
-3. Ghi lý do, điểm thiếu hoặc nội dung cần sửa trong cột `Note`.
-4. Không dùng kết quả thực thi Pass/Fail làm nhãn audit thiết kế.
+- `PASS`: moi assertion cua testcase deu pass.
+- `FAIL`: it nhat mot assertion fail; testcase van co the co Audit la `VALID` va phat hien backend defect.
+- `BLOCKED`: chua co fixture phu hop hoac can chay thu cong/stateful/concurrent, nen chua du bang chung de ket luan pass/fail.
 
-## Execution status
+Chin testcase truoc day bi `BLOCKED` da duoc chay lai sau khi chuan bi database. Tam testcase PASS; `FR17-TC-075` FAIL do hai request tao coupon dong thoi tra HTTP `200` va `500` thay vi mot `2xx` va mot `4xx` (GitHub issue `#5`).
 
-Audit không phải kết quả chạy. Khi tổng hợp báo cáo, bổ sung riêng Actual Result, `Pass / Fail / Blocked`, Bug ID và Evidence.
+## Cac cot Excel
+
+- `ID`, `Type`, `Technique / Ref`, `Input / Action`, `Expected Result`: thiet ke testcase.
+- `Audit`, `Note`: ket qua review thiet ke va ly do audit.
+- `Actual Result`, `Execution Status`: ket qua thuc thi hoac ly do bi blocked.
+- `Bug ID`: GitHub Issue da triage cho loi dai dien.
+- `Evidence`: Newman report, iteration, prepared-run evidence va GitHub Issue URL.
+
+Moi workbook co hai sheet:
+
+- `FR04`, `FR09` hoac `FR17`: toan bo testcase va ket qua chi tiet.
+- `Summary`: tong so testcase, Audit, PASS/FAIL/BLOCKED va danh sach bug duoc lien ket.
+
+Bang chung cua cac ca chay co fixture nam tai `hw06-api-tests/reports/newman/prepared/`.

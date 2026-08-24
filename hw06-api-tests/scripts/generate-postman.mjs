@@ -1025,7 +1025,7 @@ const packageJson = {
     "newman:fr17:get": "newman run postman/collections/HW06-FR17.postman_collection.json -e postman/environments/local.postman_environment.json -d postman/data/fr17-get.json --folder \"GET Coupons - run with fr17-get.json\" --reporters cli,htmlextra --reporter-htmlextra-export reports/newman/FR17-GET.html",
     "newman:fr17:create": "newman run postman/collections/HW06-FR17.postman_collection.json -e postman/environments/local.postman_environment.json -d postman/data/fr17-create.json --folder \"CREATE Coupon - run with fr17-create.json\" --reporters cli,htmlextra --reporter-htmlextra-export reports/newman/FR17-CREATE.html",
     "newman:fr17:delete": "newman run postman/collections/HW06-FR17.postman_collection.json -e postman/environments/local.postman_environment.json -d postman/data/fr17-delete.json --folder \"DELETE Coupon - run with fr17-delete.json\" --reporters cli,htmlextra --reporter-htmlextra-export reports/newman/FR17-DELETE.html",
-    "newman:all": "npm run newman:fr04:get && npm run newman:fr04:put && npm run newman:fr09 && npm run newman:fr17:get && npm run newman:fr17:create && npm run newman:fr17:delete"
+    "newman:all": "node scripts/run-newman-all.mjs"
   },
   devDependencies: {
     newman: "^6.2.1",

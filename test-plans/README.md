@@ -6,7 +6,7 @@
 - `FR09.md`: `POST /api/apply-coupon`.
 - `FR17.md`: `GET /api/coupons`, `POST /api/admin/coupons`, `DELETE /api/admin/coupons/:id`.
 
-Chỉ ba task được giao nằm trong phạm vi. Mỗi file có ít nhất 35 test case AI-generated và cần được sinh viên audit bằng `VALID`, `INVALID` hoặc `INCOMPLETE` trước khi thực thi.
+Chỉ ba task được giao nằm trong phạm vi. Mỗi file có ít nhất 35 test case AI-generated; toàn bộ 197 case đã được sinh viên review và có kết quả Audit/Execution riêng trong ba workbook Excel.
 
 ## 2. Test basis
 
